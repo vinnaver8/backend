@@ -2,7 +2,7 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from gradio_client import Client, handle_file
 from PIL import Image
-import uvicorn
+import os
 
 app = FastAPI()
 
@@ -20,10 +20,12 @@ def home():
 @app.post("/generate")
 async def generate(file: UploadFile = File(...)):
     try:
-        image = Image.open(file.file).convert("RGB")
+        # Save file temporarily
         temp_path = "/tmp/temp_input.png"
+        image = Image.open(file.file).convert("RGB")
         image.save(temp_path)
 
+        # Call Hugging Face Space
         client = Client("jamesliu1217/EasyControl_Ghibli")
         result = client.predict(
             prompt="Ghibli Studio style, Charming hand-drawn anime-style illustration",
@@ -38,9 +40,6 @@ async def generate(file: UploadFile = File(...)):
         )
 
         return {"output_url": result}
-
+    
     except Exception as e:
         return {"error": str(e)}
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=7860)
