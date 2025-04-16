@@ -1,8 +1,9 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from gradio_client import Client, handle_file
 from PIL import Image
-import os
+import requests
+import base64
+import io
 
 app = FastAPI()
 
@@ -13,33 +14,32 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+API_URL = "https://api-inference.huggingface.co/models/hysts/anime-stylegan2"
+HF_TOKEN = "your_huggingface_token"  # <-- Replace with your Hugging Face token
+
+headers = {
+    "Authorization": f"Bearer {HF_TOKEN}"
+}
+
 @app.get("/")
 def home():
-    return {"message": "Fluxen Ghibli API is working. Use POST /generate"}
+    return {"message": "Anime StyleGAN2 API is working!"}
 
 @app.post("/generate")
 async def generate(file: UploadFile = File(...)):
     try:
-        # Save file temporarily
-        temp_path = "/tmp/temp_input.png"
         image = Image.open(file.file).convert("RGB")
-        image.save(temp_path)
+        buffered = io.BytesIO()
+        image.save(buffered, format="PNG")
+        img_bytes = buffered.getvalue()
 
-        # Call Hugging Face Space
-        client = Client("jamesliu1217/EasyControl_Ghibli")
-        result = client.predict(
-            prompt="Ghibli Studio style, Charming hand-drawn anime-style illustration",
-            spatial_img=handle_file(temp_path),
-            height=768,
-            width=768,
-            seed=42,
-            control_type="Ghibli",
-            use_zero_init=False,
-            zero_steps=1,
-            api_name="/single_condition_generate_image"
-        )
+        response = requests.post(API_URL, headers=headers, data=img_bytes)
+        if response.status_code != 200:
+            return {"error": response.json()}
 
-        return {"output_url": result}
-    
+        # Convert binary to base64 string
+        base64_img = base64.b64encode(response.content).decode("utf-8")
+        return {"output_base64": base64_img}
+
     except Exception as e:
         return {"error": str(e)}
