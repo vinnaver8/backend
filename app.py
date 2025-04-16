@@ -15,7 +15,7 @@ app.add_middleware(
 )
 
 API_URL = "https://api-inference.huggingface.co/models/hysts/anime-stylegan2"
-HF_TOKEN = "your_huggingface_token"  # <-- Replace with your Hugging Face token
+HF_TOKEN = "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"  # <-- Replace with your Hugging Face token
 
 headers = {
     "Authorization": f"Bearer {HF_TOKEN}"
