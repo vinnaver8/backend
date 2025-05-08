@@ -1,5 +1,0 @@
-fastapi
-uvicorn
-Pillow
-gradio_client
-python-multipart
