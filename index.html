@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Huly MetaBrain Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .card {
+        @apply rounded-2xl overflow-hidden shadow-xl;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-black">
+    <section class="max-w-6xl mx-auto px-4 py-12">
+      <h2 class="text-4xl font-bold text-center mb-4">Huly MetaBrain</h2>
+      <p class="text-center text-lg max-w-xl mx-auto mb-10">
+        Connect every element of your workflow to build a dynamic knowledge base.
+        Soon, Huly AI will turn it into a powerful asset — a second brain for your team.
+      </p><!-- Grid Layout -->
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
+    <!-- Card 1 -->
+    <div class="col-span-1">
+      <img src="1.png" alt="Create tasks" class="card w-full" />
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-span-1">
+      <img src="2.png" alt="Plan your work" class="card w-full" />
+    </div>
+
+    <!-- Card 3 Center under 1 (on desktop) -->
+    <div class="col-span-2 md:col-span-1 md:col-start-2">
+      <img src="3.png" alt="Sync in real time" class="card w-full" />
+    </div>
+
+    <!-- Card 4 under 3 -->
+    <div class="col-span-1 md:col-start-2">
+      <img src="4.png" alt="Chat with team" class="card w-full" />
+    </div>
+
+    <!-- Card 5 under 2 -->
+    <div class="col-span-1 md:col-start-3">
+      <img src="5.png" alt="Manage projects" class="card w-full" />
+    </div>
+  </div>
+
+  <!-- Take Notes card (mobile only) -->
+  <div class="mt-8 block md:hidden">
+    <img src="note.png" alt="Take Notes" class="card w-full" />
+  </div>
+</section>
+
+  </body>
+</html>
