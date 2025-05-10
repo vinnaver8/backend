@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>INDOX AI</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#000000] text-white min-h-screen overflow-x-hidden font-sans antialiased">
+<header class="fixed inset-x-0 top-0 z-50 duration-200 group -translate-y-0">
+<!-- Gradient Background (hidden with opacity 0 initially) -->
+<div class="pointer-events-none absolute inset-x-0 h-32 lg:h-24 duration-200 bg-gradient-to-b from-black lg:from-black/75 opacity-100" style="mask: linear-gradient(black, black, transparent); backdrop-filter: blur(8px);"></div>
+<div class="
+          hidden lg:block
+          fixed inset-x-0 top-0 bg-background/25 backdrop-blur
+          pointer-events-none opacity-0 
+          lg:pt-16">
+<div class="border-y border-primary/10 h-full py-4">
+<div class="mx-auto w-full px-6 xl:max-w-7xl relative">
+<div class="flex gap-1.5 -mx-3"></div></div></div></div></header>
+          <!--user preview-->
+<div class="relative h-full mix-blend-overlay [clip-path:circle(var(--hero-mask-size)_at_var(--hero-mask-x)_var(--hero-mask-y))] lg:-top-2 lg:left-28 lg:w-[93%] md:hidden">
+<img alt="" loading="lazy" width="1574" height="1474" decoding="async" data-nimg="1" class="absolute w-full max-w-none [mask-image:radial-gradient(var(--hero-mask-size)_at_var(--hero-mask-x)_var(--hero-mask-y),black_20%,transparent)]" style="color:transparent" src="assets/box.svg"><img alt="" loading="lazy" width="1574" height="1474" decoding="async" data-nimg="1" class="absolute z-10 w-full max-w-none [mask-image:radial-gradient(var(--hero-mask-size)_at_var(--hero-mask-x)_var(--hero-mask-y),black_20%,transparent)]" style="color:transparent" src="assets/chat.svg"></div>
+<div class="relative h-svh w-full border-b border-border pb-px overflow-hidden md:overflow-x-hidden">
+<div class="relative w-full h-full">
+<div class="mx-auto w-full px-6 xl:max-w-7xl flex h-full flex-col">
+<div class="absolute -inset-y-[25%] -right-24 flex w-[100vw] flex-col xl:-right-6 xl:w-[1200px]" style="mask-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(255, 255, 255)); opacity: 1; transform: none;">
+<div class="flex flex-col w-full h-full blur">
+<div class="grow" style="background:conic-gradient(from 180deg at 99% 40% in lab, rgb(46,46,46) 18deg, rgb(90,18,6) 36deg, rgba(17, 17, 17, 0) 90deg, rgba(17, 17, 17, 0) 342deg, rgb(46, 46, 46) 360deg)"></div>
+<div class="grow" style="background:conic-gradient(from 0deg at 99% 60% in lab, rgb(46,46,46) 0deg, rgba(17, 17, 17, 0) 18deg, rgba(17, 17, 17, 0) 270deg, rgb(90,18,6) 324deg, rgb(46, 46, 46) 342deg)"></div></div>
+<canvas class="absolute inset-0 h-full w-full" width="1023" height="2709"></canvas></div>
+<div class="relative w-full flex grow items-center justify-start z-20">
+<div class="space-y-16"><div>
+<div class="absolute inset-0 top-20 flex justify-center items-center grow">
+<div><div style="opacity: 1; transform: none;">
+<img alt="Outline of the word Grok" loading="lazy" width="2299" height="779" decoding="async" data-nimg="1" class="max-w-screen sm:max-w-full xl:max-w-5xl pointer-events-none select-none" style="color:transparent;mask-image:linear-gradient(30deg, rgba(255,255,255,0) 15%, rgba(255,255,255, 1), rgba(255,255,255, 1))" src="assets/outline1.webp?&amp;w=3840&amp;q=75"/></div>
+<!-- Input box -->
+<div class="flex justify-center relative z-10 w-full mt-12" style="opacity: 1;">
+<div class="w-full max-w-xl">
+<form class="relative w-full items-center gap-3 bg-gradient-to-tr rounded-full p-px from-primary/5 to-primary/20">
+<input type="text" class="w-full h-14 lg:h-[68px] rounded-full border-none pl-6 pr-20 focus:outline-none focus:ring-2 focus:ring-white/50 bg-[#000000] text-gray-400 placeholder-gray/50" placeholder="Ask indox anything..." name="query" value="">
+<div class="absolute inset-y-2 right-2 lg:right-4 flex items-center">
+<button aria-label="Submit a query to Grok" type="submit" class="relative isolate inline-flex items-center justify-center border text-base/6 uppercase font-mono tracking-widest shrink-0 focus:outline-none data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-blue-500 data-[disabled]:opacity-50 [&amp;>[data-slot=icon]]:-mx-0.5 [&amp;>[data-slot=icon]]:my-0.5 [&amp;>[data-slot=icon]]:shrink-0 [&amp;>[data-slot=icon]]:sm:my-1 aspect-square px-3.5 py-1.5 sm:text-sm [&amp;>[data-slot=icon]]:size-4 [&amp;>[data-slot=icon]]:sm:size-3 gap-x-2 bg-[--btn-bg] text-[--btn-text] border-[--btn-border] hover:bg-[--btn-hover] hover:border-[--btn-hover] rounded-full [--btn-bg:theme(colors.primary)] [--btn-border:theme(colors.primary)] [--btn-text:theme(colors.background)] [--btn-hover:theme(colors.primary/80%)] opacity-50">
+<span class="absolute left-1/2 top-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 [@media(pointer:fine)]:hidden" aria-hidden="true"></span>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon" class="!size-4">
+<path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path></svg></button>
+</div></form></div></div></div></div></div></div></div>
+<!-- Bottom AI message section -->
+<div class="relative w-full flex justify-end items-end p-4">
+<div class="w-14 h-14 border-2 border-white rounded-full flex items-center justify-center">
+<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" class="w-8 h-8">
+<path fill-rule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v16.19l6.22-6.22a.75.75 0 1 1 1.06 1.06l-7.5 7.5a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 1 1 1.06-1.06l6.22 6.22V3a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd"/>
+</svg></div></div>
+<div class="flex flex-col items-end gap-6 sm:gap-8 lg:gap-12 md:flex-row">
+<!-- INDOX Section -->
+<div class="flex flex-col gap-3 sm:flex-row">
+</div></div></div></div></div></div>
+<!--2nd section-->
+<div class="bg-[#000000]">
+<section class="source-of-truth relative overflow-hidden pb-[180px] pt-[247px] xl:py-32 md:pb-24 md:pt-[100px] sm:pb-[72px] sm:pt-16">
+<div class="container-wide relative z-10 xl:max-w-[864px] md:max-w-3xl xs:max-w-md">
+<h2 class="ml-64 font-title text-80 font-semibold leading-h2 tracking-tighter text-white xl:ml-64 xl:max-w-[450px] xl:text-80 xl:leading-none md:ml-56 md:max-w-none md:text-54 sm:ml-0 sm:text-36">Huly MetaBrain</h2>
+<p class="ml-64 mt-5 max-w-[640px] text-18 leading-tight tracking-tight text-grey-30 xl:ml-64 xl:mt-3 md:ml-56 md:mt-3 sm:ml-0 sm:mt-2 sm:text-16">Connect every element of your workflow to build a dynamic knowledge base. Soon, Huly AI will turn it into a powerful asset — a second brain for your team.</p>
+<div class="mt-14 flex w-full gap-4.5 xl:mt-12 xl:flex-col xl:gap-3.5 md:mt-10 sm:mt-6 sm:gap-3">
+<ul class="flex w-[808px] flex-wrap items-center gap-4.5 xl:w-full xl:justify-between xl:gap-3.5 md:gap-4 sm:grid sm:grid-cols-2 sm:gap-3 xs:grid-cols-1">
+<li class="relative rounded-[30px] outline outline-white/60 md:rounded-3xl sm:m-0 sm:aspect-[1.45] sm:h-auto sm:w-full sm:overflow-hidden sm:rounded-[20px] sm:outline-4 xs:aspect-[1.65] ml-64 h-[250px] w-[270px] rounded-none outline-0 md:ml-56 md:h-[218px] md:w-[234px]">
+  <p class="absolute inset-0 bottom-auto z-10 px-6 py-[19px] text-15 font-light leading-tight text-white/65 xl:py-[21px] md:p-4 md:text-14 sm:p-5 sm:text-15 sm:max-w-[240px]">
+    <strong class="font-medium text-white">Create tasks.</strong>
+    Schedule your personal events and todos.
+  </p>
+<!-- Desktop image (only on ≥640px) -->
+  <img
+    class="pointer-events-none hidden sm:block absolute -right-1 -top-1 rounded-[30px] md:rounded-3xl max-w-max h-[508px] w-[534px] md:h-[444px] md:w-[466px]"
+    alt=""
+    loading="lazy"
+    decoding="async"
+    src="assets/images/tasks-notes.69743ddd_w-1080-q-100.png"
+    srcset="
+      assets/images/tasks-notes.69743ddd_w-640-q-100.png 640w,
+      assets/images/tasks-notes.69743ddd_w-1080-q-100.png 1080w
+    "
+    sizes="(min-width: 768px) 466px, 534px"
+  />
+ <!-- Mobile image (only below 640px) -->
+  <img
+    class="pointer-events-none block sm:hidden absolute left-1/2 top-1/2 rounded-[20px] min-w-full -translate-x-1/2 -translate-y-1/2"
+    alt="Create tasks mobile"
+    loading="lazy"
+    decoding="async"
+    src="assets/images/tasks-mobile.abb306cb_w-640-q-100.jpg"
+    srcset="
+      assets/images/tasks-mobile.abb306cb_w-384-q-100.jpg 384w,
+      assets/images/tasks-mobile.abb306cb_w-640-q-100.jpg 640w
+    "
+    sizes="100vw"
+  />
+</li>
+<!-- Plan your work Card -->
+<li class="relative rounded-[30px] outline outline-white/60 md:rounded-3xl sm:m-0 sm:aspect-[1.45] sm:h-auto sm:w-full sm:overflow-hidden sm:rounded-[20px] sm:outline-4 xs:aspect-[1.65] outline-4 xl:h-[250px] xl:w-[250px] md:h-[218px] md:w-[230px]">
+  <p class="absolute inset-0 bottom-auto z-10 px-6 py-[19px] text-15 font-light leading-tight text-white/65 xl:py-[21px] md:p-4 md:text-14 sm:p-5 sm:text-15 xl:pr-[21px] sm:max-w-[260px]">
+    <strong class="font-medium text-white">Plan your work.</strong>
+    Visualize your workday in your planner.
+  </p>
+  <img 
+    alt="Plan work" 
+    loading="lazy" 
+    width="264" 
+    height="250" 
+    decoding="async" 
+    class="pointer-events-none rounded-[30px] md:rounded-3xl sm:hidden xl:h-full xl:w-full xl:object-cover xl:object-left"
+    style="color:transparent" 
+    src="assets/images/plan-work.26bcf442_w-640-q-100.jpg" 
+    srcset="assets/images/plan-work.26bcf442_w-384-q-100.jpg 1x, assets/images/plan-work.26bcf442_w-640-q-100.jpg 2x">
+  <img 
+    alt="Plan work mobile" 
+    loading="lazy" 
+    width="320" 
+    height="220" 
+    decoding="async" 
+    class="pointer-events-none absolute left-1/2 top-1/2 hidden min-w-full -translate-x-1/2 -translate-y-1/2 rounded-[20px] sm:block" 
+    style="color:transparent" 
+    src="assets/images/plan-work-mobile.d9e8f583_w-640-q-100.jpg" 
+    srcset="assets/images/plan-work-mobile.d9e8f583_w-384-q-100.jpg 1x, assets/images/plan-work-mobile.d9e8f583_w-640-q-100.jpg 2x">
+</li>
+<!-- Take notes Card -->
+<li class="relative rounded-[30px] outline outline-white/60 md:rounded-3xl sm:m-0 sm:aspect-[1.45] sm:h-auto sm:w-full sm:overflow-hidden sm:rounded-[20px] sm:outline-4 xs:aspect-[1.65] h-[232px] w-[270px] rounded-none outline-0 md:h-[202px] md:w-[234px]">
+  <p class="absolute inset-0 bottom-auto z-10 px-6 py-[19px] text-15 font-light leading-tight text-white/65 xl:py-[21px] md:p-4 md:text-14 sm:p-5 sm:text-15 pt-0 -top-0.5 after:relative after:left-[6px] after:-mt-1 after:top-[5px] after:inline-block after:h-4.5 after:w-px after:bg-[#D1D4FA] after:opacity-80 xl:pt-1.5 xl:after:top-1.5 md:max-w-[195px] md:pt-4 md:pl-5 md:top-[-17px] md:left-[-3px] md:pr-0 md:after:h-4 md:after:top-1 sm:max-w-[280px] sm:top-[-7px]">
+    <img alt="" width="14" height="14" decoding="async" class="mb-[7px] md:mb-1.5 md:h-auto md:w-3 sm:w-3.5" style="color:transparent" src="data:image/svg+xml;base64,PHN2ZyB4bWxMiE5ZnPg==">
+    <strong class="font-medium text-white">Take notes.</strong><br class="sm:hidden">
+    Create documents to keep track of team resources
+  </p>
+  <img 
+    alt="Notes Mobile" 
+    loading="lazy" 
+    width="320" 
+    height="220" 
+    decoding="async" 
+    class="pointer-events-none absolute left-1/2 top-1/2 hidden min-w-full -translate-x-1/2 -translate-y-1/2 rounded-[20px] sm:block" 
+    style="color:transparent" 
+    src="assets/images/notes-mobile.2bf5fcba_w-640-q-100.jpg" 
+    srcset="assets/images/notes-mobile.2bf5fcba_w-384-q-100.jpg 1x, assets/images/notes-mobile.2bf5fcba_w-640-q-100.jpg 2x"
+  >
+</li>
+<!-- Sync with team Card -->
+<li class="relative rounded-[30px] outline outline-white/60 md:rounded-3xl sm:m-0 sm:aspect-[1.45] sm:h-auto sm:w-full sm:overflow-hidden sm:rounded-[20px] sm:outline-4 xs:aspect-[1.65] outline-4 xl:w-[515px] md:w-[453px]">
+  <p class="absolute inset-0 bottom-auto z-10 px-6 py-[19px] text-15 font-light leading-tight text-white/65 xl:py-[21px] md:p-4 md:text-14 sm:p-5 sm:text-15 max-w-[425px] xl:px-5 sm:max-w-[290px]">
+    <strong class="font-medium text-white">Sync in real time.</strong>
+    Connect with your team instantly to monitor progress and track updates.
+  </p>
+  <img 
+    alt="Teammates Desktop" 
+    loading="lazy" 
+    width="520" 
+    height="232" 
+    decoding="async" 
+    class="pointer-events-none rounded-[30px] md:rounded-3xl sm:hidden xl:h-full xl:w-full xl:object-cover" 
+    style="color:transparent" 
+    src="assets/images/teammates.c5a8e1bf_w-1080-q-100.jpg" 
+    srcset="assets/images/teammates.c5a8e1bf_w-640-q-100.jpg 1x, assets/images/teammates.c5a8e1bf_w-1080-q-100.jpg 2x"
+  >
+  <img 
+    alt="Teammates Mobile" 
+    loading="lazy" 
+    width="320" 
+    height="220" 
+    decoding="async" 
+    class="pointer-events-none absolute left-1/2 top-1/2 hidden min-w-full -translate-x-1/2 -translate-y-1/2 rounded-[20px] sm:block xs:top-[47.5%]" 
+    style="color:transparent" 
+    src="assets/images/teammates-mobile.8dc948be_w-640-q-100.jpg" 
+    srcset="assets/images/teammates-mobile.8dc948be_w-384-q-100.jpg 1x, assets/images/teammates-mobile.8dc948be_w-640-q-100.jpg 2x"
+  >
+</li></ul>
+<!-- clander -->
+<ul class="flex flex-1 flex-wrap items-center gap-4.5 xl:flex-nowrap xl:items-end sm:grid sm:grid-cols-2 sm:gap-3 xs:grid-cols-1">
+<li class="relative rounded-[30px] outline outline-white/60 md:rounded-3xl sm:m-0 sm:aspect-[1.45] sm:h-auto sm:w-full sm:overflow-hidden sm:rounded-[20px] sm:outline-4 xs:aspect-[1.65] h-[236px] w-[236px] rounded-none outline-0 xl:h-[250px] xl:w-[270px] xl:p-2 md:h-[218px] md:w-[235px] sm:hidden">
+  <img 
+    alt="Calendar UI" 
+    loading="lazy" 
+    width="244" 
+    height="244" 
+    decoding="async" 
+    class="pointer-events-none rounded-[30px] md:rounded-3xl sm:hidden -m-1 h-[244px] w-[244px] max-w-max rounded-none xl:mx-auto md:h-[218px] md:w-[235px]" 
+    style="color:transparent" 
+    src="assets/images/calendar.74569b09_w-640-q-100.png" 
+    srcset="assets/images/calendar.74569b09_w-256-q-100.png 1x, assets/images/calendar.74569b09_w-640-q-100.png 2x"
+  >
+</li>
+<!--collab-->
+<li class="relative rounded-[30px] outline outline-white/60 md:rounded-3xl sm:m-0 sm:aspect-[1.45] sm:h-auto sm:w-full sm:overflow-hidden sm:rounded-[20px] sm:outline-4 xs:aspect-[1.65] outline-4 xl:h-[250px] xl:w-[250px] md:h-[218px] md:w-[218px]">
+  <p class="absolute inset-0 bottom-auto z-10 px-6 py-[19px] text-15 font-light leading-tight text-white/65 xl:py-[21px] md:p-4 md:text-14 sm:p-5 sm:text-15 sm:max-w-60">
+    <strong class="font-medium text-white">Chat with team.</strong>
+    Send DM and create group chats.
+  </p>
+  <img 
+    alt="Collaboration Desktop" 
+    loading="lazy" 
+    width="264" 
+    height="250" 
+    decoding="async" 
+    class="pointer-events-none rounded-[30px] md:rounded-3xl sm:hidden xl:h-full xl:w-full xl:object-cover xl:object-left" 
+    style="color:transparent" 
+    src="assets/images/collab.aa5fcd89_w-640-q-100.jpg" 
+    srcset="assets/images/collab.aa5fcd89_w-384-q-100.jpg 1x, assets/images/collab.aa5fcd89_w-640-q-100.jpg 2x"
+  >
+  <img 
+    alt="Collaboration Mobile" 
+    loading="lazy" 
+    width="320" 
+    height="220" 
+    decoding="async" 
+    class="pointer-events-none absolute left-1/2 top-1/2 hidden min-w-full -translate-x-1/2 -translate-y-1/2 rounded-[20px] sm:block xs:top-[47.5%]" 
+    style="color:transparent" 
+    src="assets/images/collab-mobile.a7137137_w-640-q-100.jpg" 
+    srcset="assets/images/collab-mobile.a7137137_w-384-q-100.jpg 1x, assets/images/collab-mobile.a7137137_w-640-q-100.jpg 2x"
+  >
+</li>
+<!-- Manage projects-->
+<li class="relative rounded-[30px] outline outline-white/60 md:rounded-3xl sm:m-0 sm:aspect-[1.45] sm:h-auto sm:w-full sm:overflow-hidden sm:rounded-[20px] sm:outline-4 xs:aspect-[1.65] h-[232px] w-[422px] outline-4 xl:h-[250px] xl:w-[250px] md:h-[218px] md:w-[218px]">
+  <p class="absolute inset-0 bottom-auto z-10 px-6 py-[19px] text-15 font-light leading-tight text-white/65 xl:py-[21px] md:p-4 md:text-14 sm:p-5 sm:text-15 max-w-[85%] xl:max-w-full xl:pr-[5px] md:pr-[9px] sm:max-w-[260px]">
+    <strong class="font-medium text-white">Manage projects.</strong>
+    Customize your workspace to fit the needs of your teams.
+  </p>
+  <img 
+    alt="Project Management Desktop" 
+    loading="lazy" 
+    width="422" 
+    height="250" 
+    decoding="async" 
+    class="pointer-events-none rounded-[30px] md:rounded-3xl sm:hidden h-full w-full object-cover" 
+    style="color:transparent" 
+    src="assets/images/pm.57044e5b_w-1080-q-100.jpg" 
+    srcset="assets/images/pm.57044e5b_w-640-q-100.jpg 1x, assets/images/pm.57044e5b_w-1080-q-100.jpg 2x"
+  >
+  <img 
+    alt="Project Management Mobile" 
+    loading="lazy" 
+    width="320" 
+    height="220" 
+    decoding="async" 
+    class="pointer-events-none absolute left-1/2 top-1/2 hidden min-w-full -translate-x-1/2 -translate-y-1/2 rounded-[20px] sm:block xs:top-[55%]" 
+    style="color:transparent" 
+    src="assets/images/pm-mobile.39d0b377_w-640-q-100.jpg" 
+    srcset="assets/images/pm-mobile.39d0b377_w-384-q-100.jpg 1x, assets/images/pm-mobile.39d0b377_w-640-q-100.jpg 2x"
+  >
+</li></ul></div></div><div class="pointer-events-none absolute left-1/2 top-[51px] h-[1061px] w-full max-w-[1600px] -translate-x-1/2 xl:bottom-0 xl:top-auto xl:h-[930px] sm:hidden">
+  <img 
+    class="absolute left-[2%] top-[20%] w-[32%]" 
+    src="assets/images/9d5c77b6877e0fb053b9e6a6c6e031fe.svg" 
+    width="512" 
+    height="466" 
+    loading="lazy" 
+    alt="Floating blob left top">
+<img 
+    class="absolute bottom-[5%] right-[-6%] w-[48%]" 
+    src="assets/images/4471f334ae899aaa11c9921e0d3e65bc.svg" 
+    width="768" 
+    height="699" 
+    loading="lazy" 
+    alt="Floating blob bottom right">
+    
+  <img 
+    class="absolute bottom-[0%] left-[-12%] w-[47%]" 
+    src="assets/images/97e21ae98ab58474a251361eee0aa8c0.svg" 
+    width="752" 
+    height="689" 
+    loading="lazy" 
+    alt="Floating blob bottom left">
+</div>
+</section>
+</div>
+<section class="py-16 sm:py-32">
+<div class="mx-auto w-full px-6 xl:max-w-7xl space-y-16 sm:space-y-32">
+<div class="space-y-12"><div>
+<div class="mono-tag flex items-center gap-2 text-sm"><span>[</span> <span>Products</span> <span>]</span></div></div>
+<div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+<div class="max-w-xl space-y-12">
+<h2 class="text-balance text-3xl md:text-4xl lg:text-5xl tracking-tight">AI for all humanity</h2></div></div></div><div class="grid gap-0 lg:grid-cols-3 lg:-space-x-px"><div class="group relative px-0 py-10 h-full lg:p-8 flex flex-col from-secondary/10 via-transparent to-transparent border-t border-border lg:border-l lg:border-t-0 lg:hover:bg-gradient-to-b md:flex-row lg:flex-col gap-10 overflow-hidden">
+<div class="absolute inset-0 pointer-events-none opacity-0 z-10 isolate border border-primary/10 group-hover:opacity-100 hidden lg:block">
+<div class="absolute -translate-x-px -translate-y-px -left-1 -top-1 size-2 bg-primary z-10"></div>
+<div class="absolute translate-x-px -translate-y-px -right-1 -top-1 size-2 bg-primary z-10"></div>
+<div class="absolute -translate-x-px translate-y-px -left-1 -bottom-1 size-2 bg-primary z-10"></div>
+<div class="absolute translate-x-px translate-y-px -right-1 -bottom-1 size-2 bg-primary z-10"></div></div>
+<div class="max-w-sm">
+<div class="absolute inset-0"></div>
+<h3 class="text-xl">INDOX</h3>
+<p class="mt-4 text-secondary">Your gateway to next-gen AI APIs, crafted for developers and creative minds.</p></div>
+<!-- SVG Side -->
+<div class="flex-1 flex flex-col">
+<div class="opacity-75 flex-1 pointer-events-none">
+<div class="duration-100 opacity-40 group-hover:opacity-70 group-hover:scale-110 origin-bottom">
+<svg class="w-full scale-[115%] origin-top-right -mt-4" width="555" viewBox="0 0 555 384" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0 C9.2 0 18.5 0 28 0 C38.9 1 38.9 1 50 2 C58.2 3.3 66.5 4.6 75 6 C84.2 8.3 93.5 10.6 103 13 C111.6 16 120.2 18.9 129 22 C137.2 26 145.5 29.9 154 34 C161.9 38.5 161.9 38.5 170 43 C175.6 47 181.2 50.9 187 55 C190.3 57.6 193.6 60.3 197 63 C203.7 69 210.3 75 217 81 C221.6 86 226.2 90.9 231 96 C234.3 100.3 237.6 104.6 241 109 C246.4 116.9 246.4 116.9 252 125 C255 129.9 257.9 134.9 261 140 C265 147.9 265 147.9 269 156 C273 164.9 273 164.9 277 174 C281 185.9 281 185.9 285 198 C287 206.6 289 215.2 291 224 C292 230.9 293 237.9 294 245 C294.3 250.3 294.7 255.6 295 261 C295 267.6 295 274.2 295 281 C294.7 285.9 294.3 290.9 294 296 C293 296.5 293 296.5 292 297 C281.1 297.7 270.2 298.3 259 299 C255.4 299 251.7 299 248 299 C248 284.1 248 269.3 248 254 C247 247.1 246 240.1 245 233 C243 224.8 241 216.5 239 208 C236 199.8 233.1 191.5 230 183 C227.4 177.4 224.7 171.8 222 166 C218.7 160.4 215.4 154.8 212 149 C208 143.4 204.1 137.8 200 132 C195.5 127.1 195.5 127.1 191 122 C188.7 119.4 186.4 116.7 184 114 C180.7 110.7 177.4 107.4 174 104 C168.6 99.5 168.6 99.5 163 95 C158 91.4 153.1 87.7 148 84 C142.4 80.7 136.8 77.4 131 74 C123.4 70.4 115.8 66.7 108 63 C98.1 59.7 88.2 56.4 78 53 C70.4 51.4 62.8 49.7 55 48 C43.1 46.5 43.1 46.5 31 45 C19.1 45 7.2 45 -5 45 C-13.2 46 -21.5 47 -30 48 C-38.9 50 -47.8 52 -57 54 C-64.9 56.6 -72.8 59.3 -81 62 C-87.6 65 -94.2 67.9 -101 71 C-107.6 74.6 -114.2 78.3 -121 82 C-125 84.6 -128.9 87.3 -133 90 C-137.6 93.6 -142.2 97.3 -147 101 C-151.9 105.6 -156.9 110.2 -162 115 C-166 119.3 -169.9 123.6 -174 128 C-178 133.3 -181.9 138.6 -186 144 C-189.6 149.9 -193.3 155.9 -197 162 C-200 167.6 -202.9 173.2 -206 179 C-209 186.6 -211.9 194.2 -215 202 C-217 208.6 -219 215.2 -221 222 C-223.5 233.4 -223.5 233.4 -226 245 C-227 252.9 -228 260.8 -229 269 C-229.3 274.6 -229.7 280.2 -230 286 C-230 291.9 -230 297.9 -230 304 C-229 316.4 -229 316.4 -228 329 C-226.3 338.2 -224.7 347.5 -223 357 C-220.7 364.9 -218.4 372.8 -216 381 C-213.4 387.9 -210.7 394.9 -208 402 C-205.4 407.3 -202.7 412.6 -200 418 C-197 423.3 -194.1 428.6 -191 434 C-185.1 442.4 -185.1 442.4 -179 451 C-175 455.6 -171.1 460.2 -167 465 C-161.4 470.6 -155.8 476.2 -150 482 C-149.3 482.3 -148.7 482.7 -148 483 C-148 483.7 -148 484.3 -148 485 C-146.7 485.7 -145.4 486.3 -144 487 C-138.1 491.3 -132.1 495.6 -126 500 C-120.7 503.3 -115.4 506.6 -110 510 C-102.4 514 -94.8 517.9 -87 522 C-79.4 525 -71.8 527.9 -64 531 C-56.4 533.3 -48.8 535.6 -41 538 C-32.8 539.6 -24.5 541.3 -16 543 C-11.1 543.7 -6.1 544.3 -1 545 C3.3 545.3 7.6 545.7 12 546 C20.6 546 29.2 546 38 546 C51.4 544.5 51.4 544.5 65 543 C73.6 541 82.2 539 91 537 C98.6 534.4 106.2 531.7 114 529 C121.6 525.4 129.2 521.7 137 518 C142.9 514.4 148.9 510.7 155 507 C160.4 503 160.4 503 166 499 C171.3 494.7 176.6 490.4 182 486 C186.3 482 190.6 478.1 195 474 C197.3 471.4 199.6 468.7 202 466 C202.7 466 203.3 466 204 466 C204 465.3 204 464.7 204 464 C206.5 461.5 206.5 461.5 209 459 C211.6 456 214.3 453.1 217 450 C220.6 445.1 224.3 440.1 228 435 C230.3 431.7 232.6 428.4 235 425 C238.3 419.7 241.6 414.4 245 409 C250 399.8 254.9 390.5 260 381 C263.3 376.4 266.6 371.8 270 367 C273.6 363 277.3 359.1 281 355 C283 353.4 285 351.7 287 350 C287.7 350 288.3 350 289 350 C288.7 352.6 288.3 355.3 288 358 C285.7 366.2 283.4 374.5 281 383 C276.5 395.4 276.5 395.4 272 408 C268.7 415.3 265.4 422.5 262 430 C258.7 435.9 255.4 441.9 252 448 C247.5 454.9 247.5 454.9 243 462 C238.7 467.9 234.4 473.9 230 480 C225.5 485 225.5 485 221 490 C218.7 492.6 216.4 495.3 214 498 C213.3 499 212.7 500 212 501 C211.3 501 210.7 501 210 501 C209.3 502.3 208.7 503.6 208 505 C205.4 507.6 202.7 510.3 200 513 C197.4 515.3 194.7 517.6 192 520 C188 523.3 184.1 526.6 180 530 C174.1 534.3 168.1 538.6 162 543 C156.1 546.6 150.1 550.3 144 554 C136.4 558 128.8 561.9 121 566 C112.8 569.3 104.5 572.6 96 576 C88.4 578.3 80.8 580.6 73 583 C60.6 585.5 60.6 585.5 48 588 C42.1 588.7 36.1 589.3 30 590 C16.1 590 2.3 590 -12 590 C-18.3 589.3 -24.5 588.7 -31 588 C-39.6 586.4 -48.2 584.7 -57 583 C-65.2 580.7 -73.5 578.4 -82 576 C-91.2 572.4 -100.5 568.7 -110 565 C-117.9 561 -125.8 557.1 -134 553 C-144.9 546.1 -144.9 546.1 -156 539 C-161.9 534.5 -161.9 534.5 -168 530 C-171.3 527.4 -174.6 524.7 -178 522 C-182 518.4 -185.9 514.7 -190 511 C-195.6 505.4 -201.2 499.8 -207 494 C-210 490.4 -212.9 486.7 -216 483 C-219.6 478.1 -223.3 473.1 -227 468 C-232.4 459.6 -232.4 459.6 -238 451 C-241.3 445.1 -244.6 439.1 -248 433 C-250.6 427.4 -253.3 421.8 -256 416 C-259.3 407.1 -262.6 398.2 -266 389 C-268.3 380.4 -270.6 371.8 -273 363 C-274.6 353.1 -276.3 343.2 -278 333 C-278 332 -278 331 -278 330 C-277.3 329.7 -276.7 329.3 -276 329 C-260.2 329.5 -260.2 329.5 -244 330 C-244 329.3 -244 328.7 -244 328 C-254.6 328 -265.1 328 -276 328 C-315.6 327.7 -355.2 327.3 -396 327 C-399.6 327 -403.3 327 -407 327 C-407.7 326.3 -408.3 325.7 -409 325 C-406.7 324.3 -404.4 323.7 -402 323 C-394.4 322 -386.8 321 -379 320 C-356.9 316 -334.8 312.1 -312 308 C-306.4 307 -300.8 306 -295 305 C-291 303.4 -287.1 301.7 -283 300 C-281 297.7 -279 295.4 -277 293 C-276.7 292 -276.3 291 -276 290 C-274 272.8 -272 255.7 -270 238 C-267.5 225.6 -267.5 225.6 -265 213 C-262.7 204.8 -260.4 196.5 -258 188 C-255.4 181.1 -252.7 174.1 -250 167 C-243.1 152.6 -243.1 152.6 -236 138 C-231.7 131.1 -227.4 124.1 -223 117 C-219.7 112.7 -216.4 108.4 -213 104 C-208.5 98.6 -208.5 98.6 -204 93 C-200 88.7 -196.1 84.4 -192 80 C-188.7 76.7 -185.4 73.4 -182 70 C-179.7 68 -177.4 66 -175 64 C-174.3 64 -173.7 64 -173 64 C-172.7 63 -172.3 62 -172 61 C-166.1 56.7 -160.1 52.4 -154 48 C-148.7 45 -143.4 42.1 -138 39 C-131.7 35.7 -125.5 32.4 -119 29 C-111.4 25.7 -103.8 22.4 -96 19 C-87.8 16.4 -79.5 13.7 -71 11 C-57.6 8 -57.6 8 -44 5 C-34.1 3.7 -24.2 2.4 -14 1 C-9.4 0.7 -4.8 0.3 0 0 Z " fill="white" transform="translate(436,3)"/>
+<path d="M0 0 C11.6 0 23.1 0 35 0 C46.9 1.5 46.9 1.5 59 3 C68.6 5.3 78.1 7.6 88 10 C98.9 14 98.9 14 110 18 C116.6 21 123.2 23.9 130 27 C136.3 30.6 142.5 34.3 149 38 C153.6 41.3 158.2 44.6 163 48 C167.3 51.6 171.6 55.3 176 59 C180.3 63 184.6 66.9 189 71 C192 74.3 194.9 77.6 198 81 C203 87.4 203 87.4 208 94 C213.4 102.4 213.4 102.4 219 111 C222 116.3 224.9 121.6 228 127 C231.3 134.9 234.6 142.8 238 151 C240 157.6 242 164.2 244 171 C245.6 179.2 247.3 187.5 249 196 C249.7 201.9 250.3 207.9 251 214 C251 222.2 251 230.5 251 239 C250.3 243.6 249.7 248.2 249 253 C247.4 253.3 245.7 253.7 244 254 C239.7 254 235.4 254 231 254 C231 240.1 231 226.3 231 212 C230 204.7 229 197.5 228 190 C226 181.8 224 173.5 222 165 C218 154.1 218 154.1 214 143 C210 135.1 210 135.1 206 127 C203 121.7 200.1 116.4 197 111 C193 105.7 189.1 100.4 185 95 C182 91.7 179.1 88.4 176 85 C173.7 82.4 171.4 79.7 169 77 C165.7 74 162.4 71.1 159 68 C153.7 64 148.4 60.1 143 56 C135.6 51.5 135.6 51.5 128 47 C117.6 41.6 117.6 41.6 107 36 C98.8 33 90.5 30.1 82 27 C73.8 25 65.5 23 57 21 C53 20.3 49.1 19.7 45 19 C41 18.7 37.1 18.3 33 18 C22.1 18 11.2 18 0 18 C-9.4 19 -9.4 19 -19 20 C-26.9 21.7 -34.8 23.3 -43 25 C-50.6 27.3 -58.2 29.6 -66 32 C-78.4 37.4 -78.4 37.4 -91 43 C-96.6 46.3 -102.2 49.6 -108 53 C-112.6 56.3 -117.2 59.6 -122 63 C-127.7 67.6 -133.4 72.3 -139 77 C-141 79.3 -143 81.6 -145 84 C-145.7 84 -146.3 84 -147 84 C-148 86 -148 86 -149 88 C-153 92.5 -153 92.5 -157 97 C-161 102.6 -164.9 108.2 -169 114 C-172.3 119.6 -175.6 125.2 -179 131 C-182 137.3 -184.9 143.5 -188 150 C-190.3 156.3 -192.6 162.5 -195 169 C-197 176.3 -199 183.5 -201 191 C-202.3 198.9 -203.6 206.8 -205 215 C-205.7 223.9 -206.3 232.8 -207 242 C-207 245.6 -207 249.3 -207 253 C-206.3 261.6 -205.7 270.2 -205 279 C-203.7 286.9 -202.4 294.8 -201 303 C-199.3 309.3 -197.7 315.5 -196 322 C-193 330.4 -193 330.4 -190 339 C-187.4 344.9 -184.7 350.9 -182 357 C-176.1 367.4 -176.1 367.4 -170 378 C-162.1 388.4 -162.1 388.4 -154 399 C-149.5 404 -149.5 404 -145 409 C-140.4 413.6 -135.8 418.2 -131 423 C-124.6 428 -124.6 428 -118 433 C-110.6 438 -110.6 438 -103 443 C-93.1 448.4 -93.1 448.4 -83 454 C-74.1 457.6 -65.2 461.3 -56 465 C-42.6 468.5 -42.6 468.5 -29 472 C-19.6 473.5 -19.6 473.5 -10 475 C-4.4 475.3 1.2 475.7 7 476 C10.6 476 14.3 476 18 476 C24.3 475.7 30.5 475.3 37 475 C44.9 473.7 52.8 472.4 61 471 C68.3 469 75.5 467 83 465 C93.4 461 93.4 461 104 457 C114.4 451.6 114.4 451.6 125 446 C130 442.7 134.9 439.4 140 436 C146.9 430.6 146.9 430.6 154 425 C158 421.4 161.9 417.7 166 414 C169.3 410.7 172.6 407.4 176 404 C179 400.4 181.9 396.7 185 393 C189.3 387.1 193.6 381.1 198 375 C203 366.6 203 366.6 208 358 C211 351.7 213.9 345.5 217 339 C218.3 334.1 219.6 329.1 221 324 C221 320.7 221 317.4 221 314 C220 311.4 219 308.7 218 306 C216.4 304.4 214.7 302.7 213 301 C209.7 299.4 206.4 297.7 203 296 C199.4 295.3 195.7 294.7 192 294 C64 286 64 286 -64 279 C-70.6 278.3 -77.2 277.7 -84 277 C-84.7 276.3 -85.3 275.7 -86 275 C-84 274.7 -82 274.3 -80 274 C-0.7 269 78.7 264.5 158 260 C198.3 257.7 238.5 255.4 280 253 C343.4 250 343.4 250 408 247 C422.4 246 422.4 246 437 245 C439.3 245 441.6 245 444 245 C443.3 245.7 442.7 246.3 442 247 C432.4 249.6 422.9 252.3 413 255 C400.1 259 387.3 262.9 374 267 C361.6 270.5 361.6 270.5 349 274 C339.1 277.6 329.2 281.3 319 285 C311.1 289 311.1 289 303 293 C296.1 298.4 296.1 298.4 289 304 C285.7 307 282.4 309.9 279 313 C275.5 317 275.5 317 272 321 C269.7 324.3 267.4 327.6 265 331 C260 340.2 255.1 349.5 250 359 C245 366.4 245 366.4 240 374 C234 382.4 228 390.7 222 399 C219.4 402.3 216.7 405.6 214 409 C211 412.3 208.1 415.6 205 419 C197.7 426.3 190.3 433.7 183 441 C178 445 178 445 173 449 C167.1 453.3 161.1 457.6 155 462 C147.4 466.3 139.8 470.6 132 475 C124.4 478.3 116.8 481.6 109 485 C102.7 487 96.5 489 90 491 C80.4 493 70.9 495 61 497 C54.4 497.7 47.8 498.3 41 499 C34.1 499 27.1 499 20 499 C12.1 498.3 4.2 497.7 -4 497 C-12.9 495.4 -21.8 493.7 -31 492 C-39.2 489.7 -47.5 487.4 -56 485 C-68.4 480 -68.4 480 -81 475 C-86.3 472.4 -91.6 469.7 -97 467 C-101.9 464.4 -106.9 461.7 -112 459 C-117.3 455.4 -122.6 451.7 -128 448 C-132.6 444.4 -137.2 440.7 -142 437 C-147.9 431.6 -147.9 431.6 -154 426 C-157 423 -159.9 420.1 -163 417 C-166 413.4 -168.9 409.7 -172 406 C-175.6 401.1 -179.3 396.1 -183 391 C-186.6 385.1 -190.3 379.1 -194 373 C-197.6 365.4 -201.3 357.8 -205 350 C-208 341.6 -208 341.6 -211 333 C-214 323.1 -214 323.1 -217 313 C-218.7 304.4 -220.3 295.8 -222 287 C-222.7 281.1 -223.3 275.1 -224 269 C-224 254.8 -224 240.6 -224 226 C-223 217.8 -222 209.5 -221 201 C-218.5 189.1 -218.5 189.1 -216 177 C-213 167.1 -213 167.1 -210 157 C-208 151.7 -206 146.4 -204 141 C-201 134.7 -198.1 128.5 -195 122 C-191.7 116.4 -188.4 110.8 -185 105 C-181.7 100.4 -178.4 95.8 -175 91 C-170.5 85.6 -170.5 85.6 -166 80 C-162.4 76 -158.7 72.1 -155 68 C-152.7 65.7 -150.4 63.4 -148 61 C-144.4 58 -140.7 55.1 -137 52 C-132.7 48.7 -128.4 45.4 -124 42 C-117.4 38 -110.8 34.1 -104 30 C-98.7 27.4 -93.4 24.7 -88 22 C-83.4 20 -78.8 18 -74 16 C-68.1 14 -62.1 12 -56 10 C-48.1 8 -40.2 6 -32 4 C-21.6 2.5 -21.6 2.5 -11 1 C-7.4 0.7 -3.7 0.3 0 0 Z " fill="white" transform="translate(432,49)"/></svg></div></div>
+<div class="flex items-center justify-center">
+<button type="button" class="relative isolate inline-flex items-center justify-center border text-base/6 uppercase font-mono tracking-widest shrink-0 focus:outline-none data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-blue-500 data-[disabled]:opacity-50 [&>[data-slot=icon]]:-mx-0.5 [&>[data-slot=icon]]:my-0.5 [&>[data-slot=icon]]:shrink-0 [&>[data-slot=icon]]:sm:my-1 px-3.5 py-1.5 sm:text-sm [&>[data-slot=icon]]:size-4 [&>[data-slot=icon]]:sm:size-3 gap-x-2 bg-[--btn-bg] text-[--btn-text] border-[--btn-border] hover:bg-[--btn-hover] rounded-full [--btn-bg:transparent] [--btn-border:theme(colors.primary/25%)] [--btn-text:theme(colors.primary)] [--btn-hover:theme(colors.secondary/20%)] group-hover:bg-[--btn-hover] pointer-events-none">
+<span class="absolute left-1/2 top-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 [@media(pointer:fine)]:hidden" aria-hidden="true"></span>Use now
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"></path></svg></button></div></div></div>
+<div class="group relative px-0 py-10 h-full lg:p-8 flex flex-col border-t border-border lg:border-l lg:border-t-0 lg:hover:bg-gradient-to-b md:flex-row lg:flex-col gap-10 overflow-hidden">
+<!-- Hover highlight corners -->
+<div class="absolute inset-0 pointer-events-none opacity-0 z-10 border border-primary/10 group-hover:opacity-100 hidden lg:block">
+<div class="absolute -translate-x-px -translate-y-px -left-1 -top-1 size-2 bg-primary z-10"></div>
+<div class="absolute translate-x-px -translate-y-px -right-1 -top-1 size-2 bg-primary z-10"></div>
+<div class="absolute -translate-x-px translate-y-px -left-1 -bottom-1 size-2 bg-primary z-10"></div>
+<div class="absolute translate-x-px translate-y-px -right-1 -bottom-1 size-2 bg-primary z-10"></div></div>
+<!-- Responsive INDOX API Section with SVG and Canvas Overlay -->
+<div class="relative group flex flex-col md:flex-row items-center justify-between w-full px-4 py-8">
+  <!-- Text Block -->
+  <div class="max-w-sm text-center md:text-left">
+    <h3 class="text-xl font-bold">INDOX API</h3>
+    <p class="mt-4 text-secondary">
+      Integrate INDOX AI into your applications with our powerful API.
+    </p>
+  </div>
+ <!-- SVG + Canvas Wrapper -->
+  <div class="flex-1 w-full mt-8 md:mt-0 relative">
+    <!-- SVG scales fluidly across breakpoints -->
+    <svg
+      id="indox-svg"
+      viewBox="0 0 600 400"
+      class="w-full h-auto max-w-[600px] md:max-w-[700px] lg:max-w-[800px]"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect x="1" y="1" width="598" height="398" rx="12" ry="12" fill="black" stroke="#ffffff" stroke-width="1"/>
+      <line x1="1" y1="40" x2="599" y2="40" stroke="#ffffff" stroke-width="1"/>
+      <line x1="120" y1="40" x2="120" y2="400" stroke="white" stroke-width="1"/>
+      <circle cx="20" cy="20" r="6" fill="#FF5F57"/>
+      <circle cx="40" cy="20" r="6" fill="#FFBD2E"/>
+      <circle cx="60" cy="20" r="6" fill="#28C840"/>
+      <rect x="490" y="12" width="60" height="15" rx="7.5" fill="none" stroke="#ffffff" stroke-width="1"/>
+      <circle cx="570" cy="20" r="10" stroke="white" fill="none" stroke-width="1"/>
+      <text x="480" y="25" fill="#ffffff" font-family="sans-serif" font-size="18" text-anchor="end">INDOX</text>
+<g id="reveal-sequence" class="hidden-group">
+        <g id="step1">
+          <text x="15" y="65" fill="white" font-size="12" font-weight="bold">Today</text>
+          <rect x="10" y="75" width="100" height="25" rx="5" fill="#2C2C2C"/>
+          <text x="17" y="92" fill="white" font-size="12">Image Creation</text>
+        </g>
+        <g id="step2">
+          <text x="15" y="125" fill="white" font-size="12" font-weight="bold">Yesterday</text>
+          <rect x="10" y="135" width="100" height="25" rx="5" fill="#2C2C2C"/>
+          <text x="17" y="152" fill="white" font-size="12">Resume making</text>
+        </g>
+        <g id="step3">
+          <rect x="330" y="180" width="230" height="30" rx="10" fill="#444"/>
+          <text x="340" y="200" fill="white" font-size="12">What is the AI Toolkit?</text>
+        </g>
+        <g id="step4">
+          <rect x="140" y="220" width="350" height="90" rx="10" fill="#2E2E2E"/>
+          <text id="typing-container" x="150" y="240" class="typing-line"></text>
+        </g>
+        <g id="step5">
+          <rect x="140" y="340" width="320" height="25" rx="12" fill="none" stroke="white" stroke-width="1"/>
+          <text x="150" y="356" fill="#888" font-size="12">Ask anything, Indox...</text>
+          <path transform="translate(440, 344) scale(0.6)" fill="red" d="M11 16a1 1 0 0 1-.707-1.707L12.586 12l-2.293-2.293a1 1 0 0 1 1.414-1.414l3 3a1 1 0 0 1 0 1.414l-3 3A1 1 0 0 1 11 16z"/>
+        </g>
+      </g>
+    </svg>
+<!-- Canvas Overlay (same size ratio as SVG: 600x400) -->
+    <div
+      class="absolute inset-0 flex justify-center items-center
+             opacity-0 group-hover:opacity-100
+             transition duration-200 pointer-events-none z-20"
+    >
+      <canvas width="600" height="400" class="w-full h-auto"></canvas>
+    </div>
+  </div>
+</div></div></div>
+<div class="flex items-center justify-center">
+<button type="button" class="relative isolate inline-flex items-center justify-center border text-base/6 uppercase font-mono tracking-widest shrink-0 focus:outline-none data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-blue-500 data-[disabled]:opacity-50 [&>[data-slot=icon]]:-mx-0.5 [&>[data-slot=icon]]:my-0.5 [&>[data-slot=icon]]:shrink-0 [&>[data-slot=icon]]:sm:my-1 px-3.5 py-1.5 sm:text-sm [&>[data-slot=icon]]:size-4 [&>[data-slot=icon]]:sm:size-3 gap-x-2 bg-[--btn-bg] text-[--btn-text] border-[--btn-border] hover:bg-[--btn-hover] rounded-full [--btn-bg:transparent] [--btn-border:theme(colors.primary/25%)] [--btn-text:theme(colors.primary)] [--btn-hover:theme(colors.secondary/20%)] group-hover:bg-[--btn-hover] pointer-events-none">
+<span class="absolute left-1/2 top-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 [@media(pointer:fine)]:hidden" aria-hidden="true"></span>Use now
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25">
+</path></svg></button></div></div></div>
+<div class="group relative px-0 py-10 h-full lg:p-8 flex flex-col from-secondary/10 via-transparent to-transparent border-t border-border lg:border-l lg:border-t-0 lg:hover:bg-gradient-to-b md:flex-row lg:flex-col gap-10 overflow-hidden">
+<div class="absolute inset-0 pointer-events-none opacity-0 z-10 isolate border border-primary/10 group-hover:opacity-100 hidden lg:block">
+<div class="absolute -translate-x-px -translate-y-px -left-1 -top-1 size-2 bg-primary z-10"></div>
+<div class="absolute translate-x-px -translate-y-px -right-1 -top-1 size-2 bg-primary z-10"></div>
+<div class="absolute -translate-x-px translate-y-px -left-1 -bottom-1 size-2 bg-primary z-10"></div>
+<div class="absolute translate-x-px translate-y-px -right-1 -bottom-1 size-2 bg-primary z-10"></div></div>
+<!--documents-->
+<div class="max-w-sm">
+<div class="absolute inset-0"></div>
+<h3 class="text-xl">Developer Docs</h3>
+<p class="mt-4 text-secondary">Learn how to quickly install Grok at the heart of your applications and explore guides covering common use cases.</p></div>
+<div class="flex-1 flex flex-col">
+<div class="opacity-75 flex-1 pointer-events-none">
+<div class="relative mt-2 opacity-40 group-hover:opacity-70 duration-100">
+<svg class="w-full absolute -top-8 -right-8 group-hover:rotate-3 group-hover:translate-x-4 duration-100" width="700" viewBox="0 0 700 600" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="1"><rect x="2.21289" y="1.66309" width="484.288" height="415.415" stroke="url(#paint0_linear_33863_16843)"></rect><path width="432" height="357" d="M58.652,79.589c-0.128,0.145-0.383,0.246-0.834,0.281c-0.075,0.008-0.187,0.008-0.322,0.017   c-0.349,0.01-0.884,0.018-1.565,0.034c-0.373,0-0.781,0-1.231,0.01c-0.689,0-1.633,0-2.745,0.009   c-1.644,0.009-3.46,0.009-5.263,0.009c-3.112,0-6.147-0.009-8.043-0.018c-0.527,0-0.961-0.01-1.292-0.01   c-1.098-0.011-1.931-0.024-2.355-0.043c-0.06,0-0.128,0-0.196-0.008c-0.077-0.011-0.145-0.019-0.204-0.027   c-1.471-0.203-0.306-1.375-0.306-1.375s1.786-1.396,2.67-2.787c0,0,0.263-0.011,0.51-2.161c0.34-3.043,0.637-5.406,0.637-5.406   h16.4c0,0,0.291,2.363,0.638,5.406c0.238,2.15,0.504,2.161,0.504,2.161c0.832,1.308,2.447,2.617,2.649,2.779   c0.011,0,0.019,0.01,0.019,0.01s0.06,0.059,0.136,0.159C58.643,78.857,58.904,79.291,58.652,79.589z"fill="#444"/><path d="M46.222,78.82c0.055,0.065,0.115,0.152,0.168,0.246C46.337,78.975,46.277,78.888,46.222,78.82z"fill="#444"/><path fill="#00FFAA" clip-rule="evenodd" d="M49.292,48.13c-0.701,0.253-1.378,0.499-2.058,0.745   c-2.704-7.051,1.365-15.164,8.157-17.4c0.242,0.669,0.485,1.339,0.741,2.048c-2.91,1.119-5.085,3.06-6.413,5.89   C48.391,42.246,48.289,45.159,49.292,48.13z"/><path fill="#00FFAA" clip-rule="evenodd" d="M57.738,37.979c-1.714,0.672-2.981,1.81-3.753,3.469   c-0.765,1.647-0.818,3.341-0.24,5.071c-0.694,0.251-1.364,0.494-2.035,0.737c-1.682-3.884,0.301-9.603,5.28-11.344   C57.234,36.588,57.48,37.265,57.738,37.979z"/><path fill="#444" clip-rule="evenodd" d="M94.871,73.569c-4.434-12.268-8.878-24.532-13.321-36.796   c-0.052-0.145-0.105-0.29-0.17-0.43c-0.24-0.526-0.628-0.905-1.16-1.132c-0.612-0.261-1.213-0.196-1.826,0.026   c-6.304,2.29-12.61,4.572-18.916,6.856c-0.115,0.042-0.231,0.086-0.344,0.137c-0.705,0.32-1.125,0.869-1.282,1.621   c-0.101,0.479,0.007,0.934,0.17,1.385c2.23,6.15,4.459,12.304,6.687,18.455c2.218,6.123,4.435,12.246,6.655,18.367   c0.091,0.249,0.191,0.503,0.333,0.725c0.578,0.909,1.649,1.234,2.732,0.843c5.236-1.896,10.473-3.793,15.708-5.689   c1.156-0.42,2.318-0.827,3.47-1.262c0.898-0.34,1.423-1.007,1.473-1.969C95.099,74.331,95.001,73.929,94.871,73.569z    M67.208,42.062c1.47-0.619,2.94-1.237,4.411-1.853c0.537-0.225,0.875-0.303,0.924-0.219c0.045,0.076,0.078,0.156,0.102,0.241   c0.027,0.095-0.283,0.289-0.833,0.521c-0.728,0.308-1.458,0.613-2.188,0.919c-0.706,0.296-1.412,0.593-2.118,0.889   c-0.628,0.263-0.975,0.345-1.024,0.243c-0.034-0.073-0.069-0.146-0.092-0.224C66.36,42.484,66.66,42.292,67.208,42.062z    M84.763,77.338c-0.742,0.273-1.487,0.539-2.231,0.809c-0.719,0.262-1.438,0.524-2.159,0.782c-0.642,0.23-1.029,0.188-1.148-0.12   c-0.083-0.219-0.167-0.438-0.238-0.663c-0.088-0.273,0.181-0.559,0.739-0.763c1.498-0.548,2.997-1.092,4.499-1.63   c0.548-0.196,0.928-0.151,1.036,0.108c0.097,0.233,0.183,0.472,0.258,0.713C85.604,76.848,85.322,77.132,84.763,77.338z    M72.396,78.453L60.342,46.369l19.844-7.233l11.591,31.806L72.396,78.453z"/><ellipse cx="93.561" cy="23.394" rx="0.097" ry="0"/><path d="M85.338,11.489c-4.09,0-7.404,3.314-7.404,7.404c0,4.089,3.314,7.404,7.404,7.404c4.089,0,7.403-3.315,7.403-7.404   C92.741,14.804,89.427,11.489,85.338,11.489z M84.123,22.701c-1.113-1.144-2.253-2.314-3.418-3.512   c0.38-0.35,0.838-0.77,1.341-1.231c0.626,0.668,1.286,1.373,2.011,2.146c1.564-1.621,3.042-3.152,4.546-4.711   c0.532,0.567,0.948,1.012,1.367,1.457C88.027,18.794,86.071,20.751,84.123,22.701z"fill="#00FFAA"/><g><path d="M8.229,63.063V19.911h67.908c-0.037-0.334-0.057-0.673-0.057-1.018c0-0.732,0.088-1.442,0.248-2.125h-29.75h-0.542H6.828    c0,0-1.909,0.087-1.909,1.615v46.716c0,0,0.128,1.784,1.91,1.909c1.714,0.123,36.894,0.012,39.588,0    c1.606,0.006,10.056,0.026,17.309,0.041l-1.438-3.985H8.229z"fill="#444"/><path d="M85.338,28.15c-0.29,0-0.576-0.015-0.858-0.041v10.228l3.214,9.941V27.846C86.941,28.044,86.151,28.15,85.338,28.15z"fill="#444"/></g></g></svg>
+</div></div>
+<div class="flex items-center justify-center"><button type="button" class="relative isolate inline-flex items-center justify-center border text-base/6 uppercase font-mono tracking-widest shrink-0 focus:outline-none data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-blue-500 data-[disabled]:opacity-50 [&amp;>[data-slot=icon]]:-mx-0.5 [&amp;>[data-slot=icon]]:my-0.5 [&amp;>[data-slot=icon]]:shrink-0 [&amp;>[data-slot=icon]]:sm:my-1 px-3.5 py-1.5 sm:text-sm [&amp;>[data-slot=icon]]:size-4 [&amp;>[data-slot=icon]]:sm:size-3 gap-x-2 bg-[--btn-bg] text-[--btn-text] border-[--btn-border] hover:bg-[--btn-hover] rounded-full [--btn-bg:transparent] [--btn-border:theme(colors.primary/25%)] [--btn-text:theme(colors.primary)] [--btn-hover:theme(colors.secondary/20%)] group-hover:bg-[--btn-hover] pointer-events-none"><span class="absolute left-1/2 top-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 [@media(pointer:fine)]:hidden" aria-hidden="true">
+</span>Learn more<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"></path></svg></button></div></div></div></div></div></section>       
+<script src="script.js"></script>
+</body>
+</html>
