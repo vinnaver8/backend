@@ -69,32 +69,32 @@
     <strong class="font-medium text-white">Create tasks.</strong>
     Schedule your personal events and todos.
   </p>
-<!-- Desktop image (only on ≥640px) -->
-  <img
-    class="pointer-events-none hidden sm:block absolute -right-2 -top-1 rounded-[30px] md:rounded-3xl max-w-max h-[508px] w-[534px] md:h-[444px] md:w-[466px]"
-    alt=""
-    loading="lazy"
-    decoding="async"
-    src="assets/images/tasks-notes.69743ddd_w-1080-q-100.png"
-    srcset="
-      assets/images/tasks-notes.69743ddd_w-640-q-100.png 640w,
-      assets/images/tasks-notes.69743ddd_w-1080-q-100.png 1080w
-    "
-    sizes="(min-width: 768px) 466px, 534px"
-  />
- <!-- Mobile image (only below 640px) -->
-  <img
-    class="pointer-events-none block sm:hidden absolute left-1/2 top-1/2 rounded-[20px] min-w-full -translate-x-1/2 -translate-y-1/2"
-    alt="Create tasks mobile"
-    loading="lazy"
-    decoding="async"
-    src="assets/images/tasks-mobile.abb306cb_w-640-q-100.jpg"
-    srcset="
-      assets/images/tasks-mobile.abb306cb_w-384-q-100.jpg 384w,
-      assets/images/tasks-mobile.abb306cb_w-640-q-100.jpg 640w
-    "
-    sizes="100vw"
-  />
+<!-- Desktop image: hidden below md, visible at md+ -->
+<img
+  class="pointer-events-none hidden md:block absolute -right-2 -top-1 rounded-[30px] md:rounded-3xl max-w-max
+         h-[508px] w-[534px] md:h-[444px] md:w-[466px]"
+  alt=""
+  loading="lazy"
+  src="assets/images/tasks-notes.69743ddd_w-1080-q-100.png"
+  srcset="
+    assets/images/tasks-notes.69743ddd_w-640-q-100.png 640w,
+    assets/images/tasks-notes.69743ddd_w-1080-q-100.png 1080w
+  "
+  sizes="(min-width: 768px) 466px, 534px"
+/>
+<!-- Mobile image: visible below md, hidden at md+ -->
+<img
+  class="pointer-events-none block md:hidden absolute left-1/2 top-1/2 rounded-[20px] min-w-full
+         -translate-x-1/2 -translate-y-1/2"
+  alt="Create tasks mobile"
+  loading="lazy"
+  src="assets/images/tasks-mobile.abb306cb_w-640-q-100.jpg"
+  srcset="
+    assets/images/tasks-mobile.abb306cb_w-384-q-100.jpg 384w,
+    assets/images/tasks-mobile.abb306cb_w-640-q-100.jpg 640w
+  "
+  sizes="100vw"
+/>
 </li>
 <!-- Plan your work Card -->
 <li class="relative rounded-[30px] outline outline-white/60 md:rounded-3xl sm:m-0 sm:aspect-[1.45] sm:h-auto sm:w-full sm:overflow-hidden sm:rounded-[20px] sm:outline-4 xs:aspect-[1.65] outline-4 xl:h-[250px] xl:w-[250px] md:h-[218px] md:w-[230px]">
