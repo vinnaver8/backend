@@ -1,72 +1,106 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <svg id="codeSVG" width="100%" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <!-- Clipping path for rounded-corner mask -->
-      <clipPath id="codeClip">
-        <rect x="0" y="0" width="400" height="180" rx="8" ry="8"/>
-      </clipPath>
-    </defs>
-    <!-- Background -->
-    <rect x="0" y="0" width="400" height="180" fill="#333333" rx="8" ry="8"/>
-    <!-- Code lines group, clipped -->
-    <g id="codeLines" clip-path="url(#codeClip)">
-      <!-- Line 1: interface -->
-      <text x="10" y="25" font-family="monospace" font-size="12px" fill="#EEE">
-        <tspan fill="#66d9ef">interface</tspan> <tspan fill="#FFFFFF">User</tspan> {</text>
-      <!-- Line 2: id -->
-      <text x="20" y="45" font-family="monospace" font-size="12px" fill="#EEE">
-        <tspan fill="#A6E22E">id</tspan><tspan fill="#FFFFFF">: number;</tspan></text>
-      <!-- Line 3: name -->
-      <text x="20" y="65" font-family="monospace" font-size="12px" fill="#EEE">
-        <tspan fill="#A6E22E">name</tspan><tspan fill="#FFFFFF">: string;</tspan></text>
-      <!-- Line 4: closing brace -->
-      <text x="10" y="85" font-family="monospace" font-size="12px" fill="#EEE">
-        <tspan fill="#FFFFFF">}</tspan></text>
-      <!-- Line 5: class declaration -->
-      <text x="10" y="105" font-family="monospace" font-size="12px" fill="#EEE">
-        <tspan fill="#C792EA">class</tspan> <tspan fill="#FFFFFF">Greeter</tspan> {</text>
-      <!-- Line 6: constructor -->
-      <text x="20" y="125" font-family="monospace" font-size="12px" fill="#EEE">
-        <tspan fill="#C792EA">constructor</tspan>(<tspan fill="#8BE9FD">private</tspan> user<span fill="#FFFFFF">: User</span>) { }</text>
-      <!-- Line 7: greet method -->
-      <text x="20" y="145" font-family="monospace" font-size="12px" fill="#EEE">
-        <tspan fill="#C792EA">greet</tspan>() <tspan fill="#FFFFFF">{</tspan></text>
-      <!-- Line 8: console.log inside method -->
-      <text x="30" y="165" font-family="monospace" font-size="12px" fill="#EEE">
-        <tspan fill="#50FA7B">console</tspan><tspan fill="#FFFFFF">.</tspan><tspan fill="#50FA7B">log</tspan>(<tspan fill="#F1FA8C">`\${this.user.name} says hi!`</tspan>);</text>
-      <!-- Line 9: closing braces -->
-      <text x="20" y="185" font-family="monospace" font-size="12px" fill="#EEE">
-        <tspan fill="#FFFFFF">}</tspan></text>
-      <text x="10" y="205" font-family="monospace" font-size="12px" fill="#EEE">
-        <tspan fill="#FFFFFF">}</tspan></text>
-      <!-- Line 10: usage -->
-      <text x="10" y="225" font-family="monospace" font-size="12px" fill="#EEE">
-        <tspan fill="#C792EA">const</tspan> me = <tspan fill="#C792EA">await</tspan> fetchUser<span fill="#FFFFFF">(1</tspan>);</text>
-      <!-- Line 11: example array handling -->
-      <text x="10" y="245" font-family="monospace" font-size="12px" fill="#EEE">
-        <tspan fill="#50FA7B">const</tspan> names = users<span fill="#FFFFFF">.map</span>(u =&gt; u.name);</text>
-    </g>
-    <!-- Copy button -->
-    <g id="copyButton" transform="translate(340,10)" style="cursor: pointer;">
-      <path fill="#BBB" fill-rule="evenodd" 
-        d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
-      <text x="20" y="12" font-family="sans-serif" font-size="12px" fill="#BBB">Copy</text>
-    </g>
+  <svg
+  id="codeSVG"
+  viewBox="0 0 500 280"
+  xmlns="http://www.w3.org/2000/svg"
+  style="width:100%;max-width:600px;cursor:default;"
+>
+  <defs>
+    <!-- Rounded-rect clip for the code area -->
+    <clipPath id="clip">
+      <rect x="0" y="0" width="500" height="280" rx="12" ry="12" />
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="500" height="280" fill="#333333" rx="12" ry="12" />
+
+  <!-- Code lines (clipped to rounded BG) -->
+  <g id="codeLines" clip-path="url(#clip)" font-family="monospace" font-size="14">
+    <!-- Line 1 -->
+    <text x="16" y="32" fill="#EEE">
+      <tspan fill="#66d9ef">interface</tspan> <tspan fill="#FFFFFF">User</tspan> {'{'}
+    </text>
+    <!-- Line 2 -->
+    <text x="24" y="56" fill="#EEE">
+      <tspan fill="#A6E22E">id</tspan><tspan fill="#FFFFFF">: number;</tspan>
+    </text>
+    <!-- Line 3 -->
+    <text x="24" y="80" fill="#EEE">
+      <tspan fill="#A6E22E">name</tspan><tspan fill="#FFFFFF">: string;</tspan>
+    </text>
+    <!-- Line 4 -->
+    <text x="16" y="104" fill="#EEE">{'}'}</text>
+
+    <!-- Line 5 -->
+    <text x="16" y="132" fill="#EEE">
+      <tspan fill="#C792EA">class</tspan> <tspan fill="#FFFFFF">Greeter</tspan> {'{'}
+    </text>
+    <!-- Line 6 -->
+    <text x="24" y="156" fill="#EEE">
+      <tspan fill="#C792EA">constructor</tspan>
+      (<tspan fill="#8BE9FD">private</tspan> <tspan fill="#50FA7B">user</tspan>: <tspan fill="#FFFFA0">User</tspan>) {'{ }'}
+    </text>
+    <!-- Line 7 -->
+    <text x="24" y="180" fill="#EEE">
+      <tspan fill="#C792EA">greet</tspan>() {'{'}
+    </text>
+    <!-- Line 8 -->
+    <text x="32" y="204" fill="#EEE">
+      <tspan fill="#50FA7B">console</tspan>
+      <tspan fill="#FFFFFF">.</tspan>
+      <tspan fill="#50FA7B">log</tspan>
+      (<tspan fill="#F1FA8C">`\${this.user.name} says hi!`</tspan>);
+    </text>
+    <!-- Line 9 -->
+    <text x="24" y="228" fill="#EEE">{'}'}</text>
+    <!-- Line 10 -->
+    <text x="16" y="252" fill="#EEE">{'}'}</text>
+    <!-- Line 11 -->
+    <text x="16" y="276" fill="#EEE">
+      <tspan fill="#66d9ef">async</tspan> <tspan fill="#C792EA">function</tspan>
+      <tspan fill="#FFFFFF"> fetchUser</tspan>(id: <tspan fill="#A6E22E">number</tspan>) : <tspan fill="#FFFFA0">Promise</tspan><tspan fill="#FFFFFF">&lt;User&gt;</tspan> {'{'}
+    </text>
+    <!-- Extra line trimmed for space, add more as needed -->
+  </g>
+
+  <!-- Copy button group -->
+  <g
+    id="copyBtn"
+    transform="translate(440,16)"
+    style="cursor:pointer;"
+    onclick="copySvgCode()"
+  >
+    <!-- Clipboard icon -->
+    <path
+      fill="#BBB"
+      d="M4 2h8a2 2 0 0 1 2 2v12h-2V4H6v12H4V4a2 2 0 0 1 2-2z
+         M14 6h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8
+         a2 2 0 0 1 2-2h4V4h2v2z"
+    />
+    <!-- “Copy” label -->
+    <text x="0" y="30" font-family="sans-serif" font-size="12" fill="#BBB">
+      Copy
+    </text>
+  </g>
   </svg>
 
   <script>
-    document.getElementById('copyButton').addEventListener('click', async () => {
-      const codeLines = Array.from(document.querySelectorAll('#codeLines text'))
-                             .map(el => el.textContent).join('\n');
-      try {
-        await navigator.clipboard.writeText(codeLines);
-        alert('Code copied to clipboard!');
-      } catch (err) {
-        console.error('Copy failed', err);
-      }
-    });
-  </script>
+  async function copySvgCode() {
+    // grab all code-line texts
+    const lines = Array.from(
+      document.querySelectorAll('#codeLines text')
+    ).map(t => t.textContent);
+    const code = lines.join('\n');
+    try {
+      await navigator.clipboard.writeText(code);
+      alert('Copied to clipboard!');
+    } catch (err) {
+      console.error('Copy failed:', err);
+    }
+  }
+</script>
 </body>
 </html>
