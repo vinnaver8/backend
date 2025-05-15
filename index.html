@@ -1,32 +1,55 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <svg id="codeSVG" width="100%" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+  <svg id="codeSVG" width="100%" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <!-- Define a clipping path with rounded corners -->
+      <!-- Clipping path for rounded-corner mask -->
       <clipPath id="codeClip">
-        <rect x="0" y="0" width="300" height="120" rx="8" ry="8"/>
+        <rect x="0" y="0" width="400" height="180" rx="8" ry="8"/>
       </clipPath>
     </defs>
-    <!-- Background rectangle with dark fill and rounded corners -->
-    <rect x="0" y="0" width="300" height="120" fill="#333" rx="8" ry="8"/>
-    <!-- Group with clipping applied -->
+    <!-- Background -->
+    <rect x="0" y="0" width="400" height="180" fill="#333333" rx="8" ry="8"/>
+    <!-- Code lines group, clipped -->
     <g id="codeLines" clip-path="url(#codeClip)">
-      <!-- Example code lines with syntax-colored <tspan> -->
-      <text x="10" y="30" font-family="monospace" font-size="14px" fill="#EEE">
-        <tspan fill="#C792EA">function</tspan> <tspan fill="#FFFFFF">greet</tspan>(<tspan fill="#8BE9FD">name</tspan><tspan fill="#FFFFFF">: string</tspan>) <tspan fill="#FFFFFF">{</tspan>
-      </text>
-      <text x="20" y="50" font-family="monospace" font-size="14px" fill="#EEE">
-        <tspan fill="#50FA7B">console</tspan><tspan fill="#FFFFFF">.</tspan><tspan fill="#50FA7B">log</tspan>(<tspan fill="#F1FA8C">\`Hello, ${name}!\`</tspan>);
-      </text>
-      <text x="10" y="70" font-family="monospace" font-size="14px" fill="#EEE"><tspan fill="#FFFFFF">}</tspan></text>
-      <text x="10" y="90" font-family="monospace" font-size="14px" fill="#EEE">
-        <tspan fill="#50FA7B">greet</tspan>(<tspan fill="#FF79C6">'Alice'</tspan>);
-      </text>
+      <!-- Line 1: interface -->
+      <text x="10" y="25" font-family="monospace" font-size="12px" fill="#EEE">
+        <tspan fill="#66d9ef">interface</tspan> <tspan fill="#FFFFFF">User</tspan> {</text>
+      <!-- Line 2: id -->
+      <text x="20" y="45" font-family="monospace" font-size="12px" fill="#EEE">
+        <tspan fill="#A6E22E">id</tspan><tspan fill="#FFFFFF">: number;</tspan></text>
+      <!-- Line 3: name -->
+      <text x="20" y="65" font-family="monospace" font-size="12px" fill="#EEE">
+        <tspan fill="#A6E22E">name</tspan><tspan fill="#FFFFFF">: string;</tspan></text>
+      <!-- Line 4: closing brace -->
+      <text x="10" y="85" font-family="monospace" font-size="12px" fill="#EEE">
+        <tspan fill="#FFFFFF">}</tspan></text>
+      <!-- Line 5: class declaration -->
+      <text x="10" y="105" font-family="monospace" font-size="12px" fill="#EEE">
+        <tspan fill="#C792EA">class</tspan> <tspan fill="#FFFFFF">Greeter</tspan> {</text>
+      <!-- Line 6: constructor -->
+      <text x="20" y="125" font-family="monospace" font-size="12px" fill="#EEE">
+        <tspan fill="#C792EA">constructor</tspan>(<tspan fill="#8BE9FD">private</tspan> user<span fill="#FFFFFF">: User</span>) { }</text>
+      <!-- Line 7: greet method -->
+      <text x="20" y="145" font-family="monospace" font-size="12px" fill="#EEE">
+        <tspan fill="#C792EA">greet</tspan>() <tspan fill="#FFFFFF">{</tspan></text>
+      <!-- Line 8: console.log inside method -->
+      <text x="30" y="165" font-family="monospace" font-size="12px" fill="#EEE">
+        <tspan fill="#50FA7B">console</tspan><tspan fill="#FFFFFF">.</tspan><tspan fill="#50FA7B">log</tspan>(<tspan fill="#F1FA8C">`\${this.user.name} says hi!`</tspan>);</text>
+      <!-- Line 9: closing braces -->
+      <text x="20" y="185" font-family="monospace" font-size="12px" fill="#EEE">
+        <tspan fill="#FFFFFF">}</tspan></text>
+      <text x="10" y="205" font-family="monospace" font-size="12px" fill="#EEE">
+        <tspan fill="#FFFFFF">}</tspan></text>
+      <!-- Line 10: usage -->
+      <text x="10" y="225" font-family="monospace" font-size="12px" fill="#EEE">
+        <tspan fill="#C792EA">const</tspan> me = <tspan fill="#C792EA">await</tspan> fetchUser<span fill="#FFFFFF">(1</tspan>);</text>
+      <!-- Line 11: example array handling -->
+      <text x="10" y="245" font-family="monospace" font-size="12px" fill="#EEE">
+        <tspan fill="#50FA7B">const</tspan> names = users<span fill="#FFFFFF">.map</span>(u =&gt; u.name);</text>
     </g>
-    <!-- Copy icon and label (positioned at top-right) -->
-    <g id="copyButton" transform="translate(240,10)" style="cursor: pointer;">
-      <!-- Clipboard icon path (from Bootstrap Icons) -->
+    <!-- Copy button -->
+    <g id="copyButton" transform="translate(340,10)" style="cursor: pointer;">
       <path fill="#BBB" fill-rule="evenodd" 
         d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
       <text x="20" y="12" font-family="sans-serif" font-size="12px" fill="#BBB">Copy</text>
@@ -34,9 +57,7 @@
   </svg>
 
   <script>
-    // When the copy button is clicked, copy the code text to clipboard
     document.getElementById('copyButton').addEventListener('click', async () => {
-      // Gather all text from the code lines
       const codeLines = Array.from(document.querySelectorAll('#codeLines text'))
                              .map(el => el.textContent).join('\n');
       try {
