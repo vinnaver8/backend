@@ -1,104 +1,104 @@
 <!DOCTYPE html>
 <html>
 <body>
- <svg id="codeBlock" xmlns="http://www.w3.org/2000/svg" width="600" height="400">
-  <!-- Define a clip path with rounded rect for clipping content -->
-  <defs>
-    <clipPath id="clip">
-      <rect x="0" y="0" width="600" height="400" rx="10" ry="10"/>
-    </clipPath>
-  </defs>
+  <svg id="codeBlock" xmlns="[invalid url, do not cite]" width="600" height="400">
+    <!-- Define a clip path with rounded rect for clipping content -->
+    <defs>
+      <clipPath id="clip">
+        <rect x="0" y="0" width="600" height="400" rx="10" ry="10"/>
+      </clipPath>
+    </defs>
 
-  <!-- Background rectangle with rounded corners -->
-  <rect x="0" y="0" width="600" height="400" rx="10" ry="10" fill="#333333"/>
+    <!-- Background rectangle with rounded corners -->
+    <rect x="0" y="0" width="600" height="400" rx="10" ry="10" fill="#333333"/>
 
-  <!-- Code text group, clipped to rounded background -->
-  <g clip-path="url(#clip)" font-family="monospace" font-size="14">
-    <text x="20" y="30">
-      <tspan fill="#569CD6">interface</tspan><tspan fill="#FFFFFF"> Person {</tspan>
-    </text>
-    <text x="20" y="50">
-      <tspan fill="#4EC9B0">  name</tspan><tspan fill="#FFFFFF">: </tspan><tspan fill="#4EC9B0">string</tspan><tspan fill="#FFFFFF">;</tspan>
-    </text>
-    <text x="20" y="70">
-      <tspan fill="#4EC9B0">  age</tspan><tspan fill="#FFFFFF">: </tspan><tspan fill="#4EC9B0">number</tspan><tspan fill="#FFFFFF">;</tspan>
-    </text>
-    <text x="20" y="90">
-      <tspan fill="#4EC9B0">  isActive</tspan><tspan fill="#FFFFFF">: </tspan><tspan fill="#4EC9B0">boolean</tspan><tspan fill="#FFFFFF">;</tspan>
-    </text>
-    <text x="20" y="110">
-      <tspan fill="#FFFFFF">}</tspan>
-    </text>
+    <!-- Code text group, clipped to rounded background -->
+    <g id="codeLines" clip-path="url(#clip)" font-family="monospace" font-size="14">
+      <text x="20" y="30">
+        <tspan fill="#569CD6">interface</tspan><tspan fill="#FFFFFF"> Person {</tspan>
+      </text>
+      <text x="20" y="50">
+        <tspan fill="#4EC9B0">  name</tspan><tspan fill="#FFFFFF">: </tspan><tspan fill="#4EC9B0">string</tspan><tspan fill="#FFFFFF">;</tspan>
+      </text>
+      <text x="20" y="70">
+        <tspan fill="#4EC9B0">  age</tspan><tspan fill="#FFFFFF">: </tspan><tspan fill="#4EC9B0">number</tspan><tspan fill="#FFFFFF">;</tspan>
+      </text>
+      <text x="20" y="90">
+        <tspan fill="#4EC9B0">  isActive</tspan><tspan fill="#FFFFFF">: </tspan><tspan fill="#4EC9B0">boolean</tspan><tspan fill="#FFFFFF">;</tspan>
+      </text>
+      <text x="20" y="110">
+        <tspan fill="#FFFFFF">}</tspan>
+      </text>
 
-    <text x="20" y="140">
-      <tspan fill="#569CD6">const</tspan><tspan fill="#FFFFFF"> users: </tspan><tspan fill="#4EC9B0">Person</tspan><tspan fill="#FFFFFF">[] = [</tspan>
-    </text>
-    <text x="20" y="160">
-      <tspan fill="#FFFFFF">  { name: </tspan><tspan fill="#CE9178">"Alice"</tspan><tspan fill="#FFFFFF">, age: </tspan><tspan fill="#B5CEA8">25</tspan><tspan fill="#FFFFFF">, isActive: </tspan><tspan fill="#569CD6">true</tspan><tspan fill="#FFFFFF"> },</tspan>
-    </text>
-    <text x="20" y="180">
-      <tspan fill="#FFFFFF">  { name: </tspan><tspan fill="#CE9178">"Bob"</tspan><tspan fill="#FFFFFF">, age: </tspan><tspan fill="#B5CEA8">30</tspan><tspan fill="#FFFFFF">, isActive: </tspan><tspan fill="#569CD6">false</tspan><tspan fill="#FFFFFF"> },</tspan>
-    </text>
-    <text x="20" y="200">
-      <tspan fill="#FFFFFF">  { name: </tspan><tspan fill="#CE9178">"Carol"</tspan><tspan fill="#FFFFFF">, age: </tspan><tspan fill="#B5CEA8">27</tspan><tspan fill="#FFFFFF">, isActive: </tspan><tspan fill="#569CD6">true</tspan><tspan fill="#FFFFFF"> }];</tspan>
-    </text>
+      <text x="20" y="140">
+        <tspan fill="#569CD6">const</tspan><tspan fill="#FFFFFF"> users: </tspan><tspan fill="#4EC9B0">Person</tspan><tspan fill="#FFFFFF">[] = [</tspan>
+      </text>
+      <text x="20" y="160">
+        <tspan fill="#FFFFFF">  { name: </tspan><tspan fill="#CE9178">"Alice"</tspan><tspan fill="#FFFFFF">, age: </tspan><tspan fill="#B5CEA8">25</tspan><tspan fill="#FFFFFF">, isActive: </tspan><tspan fill="#569CD6">true</tspan><tspan fill="#FFFFFF"> },</tspan>
+      </text>
+      <text x="20" y="180">
+        <tspan fill="#FFFFFF">  { name: </tspan><tspan fill="#CE9178">"Bob"</tspan><tspan fill="#FFFFFF">, age: </tspan><tspan fill="#B5CEA8">30</tspan><tspan fill="#FFFFFF">, isActive: </tspan><tspan fill="#569CD6">false</tspan><tspan fill="#FFFFFF"> },</tspan>
+      </text>
+      <text x="20" y="200">
+        <tspan fill="#FFFFFF">  { name: </tspan><tspan fill="#CE9178">"Carol"</tspan><tspan fill="#FFFFFF">, age: </tspan><tspan fill="#B5CEA8">27</tspan><tspan fill="#FFFFFF">, isActive: </tspan><tspan fill="#569CD6">true</tspan><tspan fill="#FFFFFF"> }];</tspan>
+      </text>
 
-    <text x="20" y="230">
-      <tspan fill="#569CD6">function</tspan><tspan fill="#FFFFFF"> greet(user: </tspan><tspan fill="#4EC9B0">Person</tspan><tspan fill="#FFFFFF">): string {</tspan>
-    </text>
-    <text x="20" y="250">
-      <tspan fill="#FFFFFF">  return `Hello, ${</tspan><tspan fill="#4EC9B0">user</tspan><tspan fill="#FFFFFF">.name}!`;</tspan>
-    </text>
-    <text x="20" y="270">
-      <tspan fill="#FFFFFF">}</tspan>
-    </text>
+      <text x="20" y="230">
+        <tspan fill="#569CD6">function</tspan><tspan fill="#FFFFFF"> greet(user: </tspan><tspan fill="#4EC9B0">Person</tspan><tspan fill="#FFFFFF">): string {</tspan>
+      </text>
+      <text x="20" y="250">
+        <tspan fill="#FFFFFF">  return `Hello, ${</tspan><tspan fill="#4EC9B0">user</tspan><tspan fill="#FFFFFF">.name}!`;</tspan>
+      </text>
+      <text x="20" y="270">
+        <tspan fill="#FFFFFF">}</tspan>
+      </text>
 
-    <text x="20" y="300">
-      <tspan fill="#569CD6">const</tspan><tspan fill="#FFFFFF"> activeUsers = users.filter(u =&gt; u.isActive);</tspan>
-    </text>
-    <text x="20" y="320">
-      <tspan fill="#569CD6">const</tspan><tspan fill="#FFFFFF"> messages = activeUsers.map(greet);</tspan>
-    </text>
+      <text x="20" y="300">
+        <tspan fill="#569CD6">const</tspan><tspan fill="#FFFFFF"> activeUsers = users.filter(u => u.isActive);</tspan>
+      </text>
+      <text x="20" y="320">
+        <tspan fill="#569CD6">const</tspan><tspan fill="#FFFFFF"> messages = activeUsers.map(greet);</tspan>
+      </text>
 
-    <text x="20" y="350">
-      <tspan fill="#FFFFFF">messages.forEach((msg, idx) =&gt; {</tspan>
-    </text>
-    <text x="20" y="370">
-      <tspan fill="#FFFFFF">  console.log(`${idx + 1}. ${msg}`);</tspan>
-    </text>
-    <text x="20" y="390">
-      <tspan fill="#FFFFFF">});</tspan>
-    </text>
-  </g>
-  <g id="copyBtn" transform="translate(440,16)" style="cursor:pointer;" onclick="copyCode()">
-    <!-- "Copy code" text label -->
-    <text x="0" y="12" font-family="sans-serif" font-size="14" fill="#CCCCCC">
-      Copy code
-    </text>
-    <g id="copyBtn" transform="translate(80, -4)">
-      <!-- Back page -->
-      <rect id="copyBtn"x="4" y="4" width="24" height="32" rx="3" fill="none" stroke="#CCCCCC" stroke-width="2"/>
-      <!-- Front page -->
-      <rect x="0" y="0" width="24" height="32" rx="3" fill="none" stroke="#CCCCCC" stroke-width="2"/>
-      <!-- Text lines on front page -->
-      <line x1="6" y1="8" x2="18" y2="8" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"/>
-      <line x1="6" y1="14" x2="18" y2="14" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"/>
-      <line x1="6" y1="20" x2="18" y2="20" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"/>
+      <text x="20" y="350">
+        <tspan fill="#FFFFFF">messages.forEach((msg, idx) => {</tspan>
+      </text>
+      <text x="20" y="370">
+        <tspan fill="#FFFFFF">  console.log(`${idx + 1}. ${msg}`);</tspan>
+      </text>
+      <text x="20" y="390">
+        <tspan fill="#FFFFFF">});</tspan>
+      </text>
     </g>
-  </g>
-</svg>
+    <g id="copyBtn" transform="translate(440,16)" style="cursor:pointer;" onclick="copyCode()">
+      <!-- "Copy code" text label -->
+      <text x="0" y="12" font-family="sans-serif" font-size="14" fill="#CCCCCC">
+        Copy code
+      </text>
+      <g transform="translate(80, -4)">
+        <!-- Back page -->
+        <rect x="4" y="4" width="24" height="32" rx="3" fill="none" stroke="#CCCCCC" stroke-width="2"/>
+        <!-- Front page -->
+        <rect x="0" y="0" width="24" height="32" rx="3" fill="none" stroke="#CCCCCC" stroke-width="2"/>
+        <!-- Text lines on front page -->
+        <line x1="6" y1="8" x2="18" y2="8" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"/>
+        <line x1="6" y1="14" x2="18" y2="14" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"/>
+        <line x1="6" y1="20" x2="18" y2="20" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </g>
+  </svg>
 
-<script>
-function copyCode() {
-  const svg = document.getElementById('codeBlock');
-  let codeText = '';
-  svg.querySelectorAll('#codeLines text').forEach(el => {
-    codeText += el.textContent + '\n';
-  });
-  navigator.clipboard.writeText(codeText)
-    .then(() => console.log('Code copied!'))
-    .catch(err => console.error('Copy failed:', err));
-}
-</script>
+  <script>
+    function copyCode() {
+      const svg = document.getElementById('codeBlock');
+      let codeText = '';
+      svg.querySelectorAll('#codeLines text').forEach(el => {
+        codeText += el.textContent + '\n';
+      });
+      navigator.clipboard.writeText(codeText)
+        .then(() => console.log('Code copied!'))
+        .catch(err => console.error('Copy failed:', err));
+    }
+  </script>
 </body>
 </html>
