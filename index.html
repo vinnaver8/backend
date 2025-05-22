@@ -52,18 +52,29 @@
     ctx.globalCompositeOperation = 'lighter';
     const cx = W / 2;
     const cy = H * 0.1;
+    const t  = performance.now() * 0.0005;
 
-    const t = performance.now() * 0.0005;
+    // 1) Optional: core beam for extra brightness
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.fillStyle = 'rgba(255, 220, 100, 0.3)';
+    ctx.fillRect(-2, 0, 4, H * 1.5);
+    ctx.restore();
 
+    // 2) Many thin beams
     for (let i = 0; i < 80; i++) {
-      const angle = (i / 30 - 0.5) * 0.4 + Math.sin(t + i) * 0.02;
+      const angle  = (i/80 - 0.5) * 0.3 + Math.sin(t + i) * 0.015;
       const length = H * 1.5;
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(angle);
+
+      // Sharper, brighter gradient
       const grad = ctx.createLinearGradient(0, 0, 0, length);
-      grad.addColorStop(0, 'rgba(255,200,50,0.2)');
+      grad.addColorStop(0,   'rgba(255,200,50,0.4)');  // 🔺 increase alpha here
+      grad.addColorStop(0.3, 'rgba(255,200,50,0.2)');
       grad.addColorStop(0.7, 'rgba(255,200,50,0)');
+
       ctx.fillStyle = grad;
       ctx.fillRect(-1, 0, 2, length);
       ctx.restore();
