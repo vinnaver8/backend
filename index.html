@@ -34,44 +34,44 @@
     </p>
   </div>
 </div>
-
 <script>
   const canvas = document.getElementById('lightRays');
   const ctx = canvas.getContext('2d');
 
   let W, H;
   function resize() {
-    W = canvas.width  = canvas.offsetWidth;
+    W = canvas.width = canvas.offsetWidth;
     H = canvas.height = canvas.offsetHeight;
   }
   window.addEventListener('resize', resize);
   resize();
 
-  function draw() {
+  function draw(time) {
     ctx.clearRect(0, 0, W, H);
     ctx.globalCompositeOperation = 'lighter';
+
     const cx = W / 2;
     const cy = H * 0.1;
-    const t  = performance.now() * 0.0005;
+    const t = time * 0.002; // animate based on time
 
-    // 1) Optional: core beam for extra brightness
+    // Optional: strong center beam
     ctx.save();
     ctx.translate(cx, cy);
-    ctx.fillStyle = 'rgba(255, 220, 100, 0.3)';
+    ctx.fillStyle = 'rgba(255, 220, 100, 0.25)';
     ctx.fillRect(-2, 0, 4, H * 1.5);
     ctx.restore();
 
-    // 2) Many thin beams
     for (let i = 0; i < 80; i++) {
-      const angle  = (i/80 - 0.5) * 0.3 + Math.sin(t + i) * 0.015;
+      const offset = Math.sin(t + i * 0.2) * 0.05; // dynamic motion
+      const angle = (i / 80 - 0.5) * 0.3 + offset;
+
       const length = H * 1.5;
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(angle);
 
-      // Sharper, brighter gradient
       const grad = ctx.createLinearGradient(0, 0, 0, length);
-      grad.addColorStop(0,   'rgba(255,200,50,0.4)');  // 🔺 increase alpha here
+      grad.addColorStop(0,   'rgba(255,200,50,0.5)');
       grad.addColorStop(0.3, 'rgba(255,200,50,0.2)');
       grad.addColorStop(0.7, 'rgba(255,200,50,0)');
 
@@ -83,7 +83,7 @@
     requestAnimationFrame(draw);
   }
 
-  draw();
+  requestAnimationFrame(draw);
 </script>
 </body>
 </html>
