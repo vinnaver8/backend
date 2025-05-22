@@ -17,17 +17,38 @@
     }
   </style>
 </head>
-<body>
-<div class="relative w-[360px] h-[360px] bg-black rounded-xl overflow-hidden">
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[300px] 
-              bg-[conic-gradient(from 180deg at top center,#fff3 10deg,#0000 60deg)]
-              blur-2xl opacity-60 pointer-events-none z-0">
+  <div class="relative w-[360px] h-[360px] bg-black rounded-xl overflow-hidden">
+  <!-- Animated Light Rays -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute left-1/2 top-0 -translate-x-1/2 w-[300px] h-[600px] 
+                bg-[linear-gradient(120deg,rgba(255,255,255,0.15) 20%,transparent 70%)] 
+                opacity-70 blur-2xl animate-light-rays">
+    </div>
   </div>
 
+  <!-- Content -->
   <div class="relative z-10 p-6">
     <h3 class="text-white font-bold text-xl">Keyboard shortcuts.</h3>
     <p class="text-white/70 mt-2">Work efficiently with instant access to common actions.</p>
   </div>
 </div>
+
+<style>
+@keyframes light-rays {
+  0% {
+    transform: translateX(-50%) translateY(-20%) rotate(0deg);
+  }
+  50% {
+    transform: translateX(-50%) translateY(0%) rotate(2deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-20%) rotate(0deg);
+  }
+}
+
+.animate-light-rays {
+  animation: light-rays 6s ease-in-out infinite;
+}
+</style>
 </body>
 </html>
