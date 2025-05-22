@@ -16,39 +16,63 @@
       margin: 0;
     }
   </style>
-</head>
-  <div class="relative w-[360px] h-[360px] bg-black rounded-xl overflow-hidden">
-  <!-- Animated Light Rays -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute left-1/2 top-0 -translate-x-1/2 w-[300px] h-[600px] 
-                bg-[linear-gradient(120deg,rgba(255,255,255,0.15) 20%,transparent 70%)] 
-                opacity-70 blur-2xl animate-light-rays">
-    </div>
-  </div>
+</head> <body>
+  <div class="relative w-[360px] h-[360px] bg-black rounded-2xl overflow-hidden">
+  <!-- Animated light-rays canvas -->
+  <canvas id="lightRays" class="absolute inset-0 w-full h-full pointer-events-none blur-[8px] opacity-60"></canvas>
 
-  <!-- Content -->
-  <div class="relative z-10 p-6">
-    <h3 class="text-white font-bold text-xl">Keyboard shortcuts.</h3>
-    <p class="text-white/70 mt-2">Work efficiently with instant access to common actions.</p>
+  <!-- Your card content -->
+  <div class="relative z-10 p-6 flex flex-col h-full justify-between text-white">
+    <div>
+      <h3 class="text-xl font-semibold">Keyboard shortcuts.</h3>
+      <p class="mt-2 text-white/80">
+        Work efficiently with instant access to common actions.
+      </p>
+    </div>
+    <p class="text-sm text-white/60">
+      Press <kbd class="bg-white/10 px-1 py-0.5 rounded text-white">M</kbd> to highlight this card.
+    </p>
   </div>
 </div>
 
-<style>
-@keyframes light-rays {
-  0% {
-    transform: translateX(-50%) translateY(-20%) rotate(0deg);
-  }
-  50% {
-    transform: translateX(-50%) translateY(0%) rotate(2deg);
-  }
-  100% {
-    transform: translateX(-50%) translateY(-20%) rotate(0deg);
-  }
-}
+<script>
+  const canvas = document.getElementById('lightRays');
+  const ctx = canvas.getContext('2d');
 
-.animate-light-rays {
-  animation: light-rays 6s ease-in-out infinite;
-}
-</style>
+  let W, H;
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'lighter';
+    const cx = W / 2;
+    const cy = H * 0.1;
+
+    const t = performance.now() * 0.0005;
+
+    for (let i = 0; i < 30; i++) {
+      const angle = (i / 30 - 0.5) * 0.4 + Math.sin(t + i) * 0.02;
+      const length = H * 1.5;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(angle);
+      const grad = ctx.createLinearGradient(0, 0, 0, length);
+      grad.addColorStop(0, 'rgba(255,200,50,0.2)');
+      grad.addColorStop(0.7, 'rgba(255,200,50,0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(-1, 0, 2, length);
+      ctx.restore();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+</script>
 </body>
 </html>
