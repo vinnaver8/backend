@@ -18,63 +18,24 @@
   </style>
 </head>
 <body>
-
-  <!-- Card wrapper -->
-  <div class="relative overflow-hidden rounded-2xl bg-black p-6 w-[360px] h-[360px]">
-  <!-- Focus Light Canvas -->
-  <div class="absolute inset-0 z-0 pointer-events-none">
-    <canvas id="focusCanvas" class="w-full h-full"></canvas>
-  </div>
-
-  <!-- Card Content -->
-  <div class="relative z-10 text-white flex flex-col h-full justify-between">
-    <div>
-      <h3 class="text-xl font-semibold">Keyboard shortcuts.</h3>
-      <p class="mt-2 text-white/80">
-        Work efficiently with instant access to common actions.
-      </p>
+ <div class="relative col-span-full row-span-full">
+  <span class="absolute left-1/2 top-0 -z-10 h-full w-px" aria-hidden="true"></span>  <!-- Canvas glow container -->  <div class="absolute left-1/2 aspect-[1.01904] h-full w-full -translate-x-1/2 overflow-hidden sm:-top-12 sm:h-auto xs:-top-8" aria-hidden="true">
+    <div class="h-full w-full md:pointer-events-none">
+      <canvas id="focusLight" width="972" height="953" style="vertical-align: top; width: 360px; height: 353px;"></canvas>
     </div>
-    <p class="text-sm text-white/60">
-      Press <kbd class="bg-white/10 px-1 py-0.5 rounded text-white">M</kbd> to highlight this card.
-    </p>
   </div>
-</div>
+</div><script>
+  const canvas = document.getElementById("focusLight");
+  const ctx = canvas.getContext("2d");
 
-<script>
-  const canvas = document.getElementById('focusCanvas');
-  const ctx = canvas.getContext('2d');
+  const gradient = ctx.createRadialGradient(486, 476, 0, 486, 476, 200);
+  gradient.addColorStop(0, "rgba(255, 153, 51, 0.9)"); // inner sharp edge
+  gradient.addColorStop(0.2, "rgba(255, 153, 51, 0.5)");
+  gradient.addColorStop(0.4, "rgba(255, 153, 51, 0.1)");
+  gradient.addColorStop(1, "rgba(0, 0, 0, 0)"); // outer transparent
 
-  function resizeCanvas() {
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-
-  function drawLight() {
-    resizeCanvas();
-    const w = canvas.width;
-    const h = canvas.height;
-
-    const cx = w / 2;
-    const cy = h * 0.25;
-
-    const innerRadius = 10;
-    const outerRadius = w * 0.6;
-
-    const gradient = ctx.createRadialGradient(cx, cy, innerRadius, cx, cy, outerRadius);
-    gradient.addColorStop(0, 'rgba(255, 153, 51, 0.7)');
-    gradient.addColorStop(0.3, 'rgba(255, 102, 0, 0.3)');
-    gradient.addColorStop(1, 'rgba(255, 102, 0, 0)');
-
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, w, h);
-
-    requestAnimationFrame(drawLight);
-  }
-
-  drawLight();
-  window.addEventListener('resize', resizeCanvas);
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 </script>
-
 </body>
 </html>
