@@ -17,31 +17,43 @@
     }
   </style>
 </head> <body>
-  <div class="relative w-[360px] h-[360px] bg-black rounded-2xl overflow-hidden">
-  <!-- Animated light-rays canvas -->
-  <canvas id="lightRays" class="absolute inset-0 w-full h-full pointer-events-none blur-[8px] opacity-60"></canvas>
+ <div class="relative w-[360px] h-[360px] bg-black rounded-2xl overflow-hidden">
+  <!-- Animated AI-themed light rays + sparks -->
+  <canvas
+    id="lightRaysAI"
+    class="absolute inset-0 w-full h-full pointer-events-none blur-[6px] opacity-70"
+  ></canvas>
 
   <!-- Your card content -->
   <div class="relative z-10 p-6 flex flex-col h-full justify-between text-white">
     <div>
-      <h3 class="text-xl font-semibold">Keyboard shortcuts.</h3>
+      <h3 class="text-xl font-semibold">ChatGPT Integration</h3>
       <p class="mt-2 text-white/80">
-        Work efficiently with instant access to common actions.
+        Seamlessly bring AI into your workflows with one API call.
       </p>
     </div>
     <p class="text-sm text-white/60">
-      Press <kbd class="bg-white/10 px-1 py-0.5 rounded text-white">M</kbd> to highlight this card.
+      Press <kbd class="bg-black/30 px-1 py-0.5 rounded text-white">ENTER</kbd> to ask ChatGPT.
     </p>
   </div>
 </div>
+
 <script>
-  const canvas = document.getElementById('lightRays');
+  const canvas = document.getElementById('lightRaysAI');
   const ctx = canvas.getContext('2d');
 
-  let W, H;
+  let W, H, sparks = [];
   function resize() {
-    W = canvas.width = canvas.offsetWidth;
+    W = canvas.width  = canvas.offsetWidth;
     H = canvas.height = canvas.offsetHeight;
+    // initialize some spark particles
+    sparks = Array.from({ length: 50 }, () => ({
+      x: W/2 + (Math.random()-0.5)*100,
+      y: H*0.1 + (Math.random()-0.5)*50,
+      vx: (Math.random()-0.5)*0.3,
+      vy: (Math.random()-0.5)*0.3,
+      alpha: Math.random()*0.5+0.2,
+    }));
   }
   window.addEventListener('resize', resize);
   resize();
@@ -50,40 +62,50 @@
     ctx.clearRect(0, 0, W, H);
     ctx.globalCompositeOperation = 'lighter';
 
-    const cx = W / 2;
-    const cy = H * 0.1;
-    const t = time * 0.002; // animate based on time
+    const cx = W/2, cy = H*0.1;
+    const t = time*0.001;
 
-    // Optional: strong center beam
+    // Core green beam
     ctx.save();
     ctx.translate(cx, cy);
-    ctx.fillStyle = 'rgba(255, 220, 100, 0.25)';
-    ctx.fillRect(-2, 0, 4, H * 1.5);
+    ctx.fillStyle = 'rgba(16,163,127,0.25)';
+    ctx.fillRect(-3, 0, 6, H*1.5);
     ctx.restore();
 
-    for (let i = 0; i < 80; i++) {
-      const offset = Math.sin(t + i * 0.2) * 0.05; // dynamic motion
-      const angle = (i / 80 - 0.5) * 0.3 + offset;
-
-      const length = H * 1.5;
+    // Light rays
+    for (let i = 0; i < 60; i++) {
+      const offset = Math.sin(t + i*0.15)*0.04;
+      const angle  = (i/60 - 0.5)*0.25 + offset;
+      const len    = H*1.5;
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(angle);
-
-      const grad = ctx.createLinearGradient(0, 0, 0, length);
-      grad.addColorStop(0,   'rgba(255,200,50,0.5)');
-      grad.addColorStop(0.3, 'rgba(255,200,50,0.2)');
-      grad.addColorStop(0.7, 'rgba(255,200,50,0)');
-
-      ctx.fillStyle = grad;
-      ctx.fillRect(-1, 0, 2, length);
+      const g = ctx.createLinearGradient(0,0,0,len);
+      g.addColorStop(0,   'rgba(16,163,127,0.4)');
+      g.addColorStop(0.3, 'rgba(16,163,127,0.15)');
+      g.addColorStop(0.7, 'rgba(16,163,127,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(-1, 0, 2, len);
       ctx.restore();
     }
+
+    // Digital spark particles
+    sparks.forEach(s => {
+      s.x += s.vx + Math.sin(t+s.vx)*0.2;
+      s.y += s.vy + Math.cos(t+s.vy)*0.2;
+      s.alpha += (Math.random()-0.5)*0.02;
+      if (s.alpha < 0.1) s.alpha = 0.1;
+      if (s.alpha > 0.8) s.alpha = 0.8;
+      ctx.fillStyle = `rgba(16,163,127,${s.alpha})`;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, 1.5, 0, 2*Math.PI);
+      ctx.fill();
+    });
 
     requestAnimationFrame(draw);
   }
 
   requestAnimationFrame(draw);
-</script>
+</script> 
 </body>
 </html>
