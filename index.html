@@ -44,7 +44,7 @@
     ctx.clearRect(0, 0, W, H);
     ctx.globalCompositeOperation = 'lighter';
     const cx = W / 2;
-    const cy = H * 0.1;
+    const cy = H * 0.6;
     const t  = time * 0.002;
 
     const beamCount = 30;
@@ -67,12 +67,12 @@
       // vertical gradient along beam’s length
       const grad = ctx.createLinearGradient(0, 0, 0, length);
       grad.addColorStop(0,   'rgba(16,163,127,0.5)');
-      grad.addColorStop(0.4, 'rgba(16,163,127,0.2)');
+      grad.addColorStop(0.4, 'rgba(16,173,127,0.2)');
       grad.addColorStop(1,   'rgba(16,163,127,0)');
 
       ctx.fillStyle = grad;
       // beam width = 2px
-      ctx.fillRect(-5, 0, 10, length);
+      ctx.fillRect(-8, 0, 16,H*1.5);
       ctx.restore();
     }
 
