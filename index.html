@@ -58,37 +58,37 @@
     const cy = H * 0.1;
     const t  = time * 0.002;
 
-    // **Core pulsing beam**
-    const corePhase = (Math.sin(t * 1.5) + 1) / 2;     // 0 → 1
-    const coreHeight = H * (1.0 + 0.2 * corePhase);    // pulses ±20%
+    // Core pulsing beam
+    const corePhase  = (Math.sin(t * 1.5) + 1) / 2;   // 0 → 1
+    const coreHeight = H * (1.0 + 0.2 * corePhase);  // pulses ±20%
     ctx.save();
     ctx.translate(cx, cy);
     ctx.fillStyle = `rgba(255,200,50,${0.3 + 0.2 * corePhase})`;
     ctx.fillRect(-4, 0, 8, coreHeight);
     ctx.restore();
 
-    // **Many angled beams**
-    const beamCount = 60;
+    // 80 angled beams
+    const beamCount = 80;
     for (let i = 0; i < beamCount; i++) {
-      // sequential phase offset → subtle length drift
+      // phase-offset pulsing
       const phase  = t - (i / beamCount) * Math.PI * 2;
-      const norm   = (Math.sin(phase) + 1) / 2;        // 0 → 1
-      const length = H * (0.8 + 0.7 * norm);          // from 0.8H → 1.5H
+      const norm   = (Math.sin(phase) + 1) / 2;         // 0 → 1
+      const length = H * (0.8 + 0.7 * norm);           // 0.8H → 1.5H
 
-      // tighter spread around center
-      const angle = (i / beamCount - 0.5) * 0.2;
+      // tight spread
+      const angle  = (i / beamCount - 0.5) * 0.2;
 
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(angle);
 
-      // brighter, wider gradient
+      // sharper, brighter gradient
       const grad = ctx.createLinearGradient(0, 0, 0, length);
       grad.addColorStop(0,   'rgba(255,200,50,0.6)');
       grad.addColorStop(0.3, 'rgba(255,200,50,0.3)');
       grad.addColorStop(0.7, 'rgba(255,200,50,0)');
       ctx.fillStyle = grad;
-      ctx.fillRect(-2, 0, 4, length);  // 4px wide beams
+      ctx.fillRect(-2, 0, 4, length);  // 4px per beam
       ctx.restore();
     }
 
