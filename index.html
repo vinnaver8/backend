@@ -37,8 +37,7 @@
 
 <script>
   const canvas = document.getElementById('lightRays');
-  const gl = canvas.getContext('webgl') // or 'webgl2'
-
+  const ctx = canvas.getContext('2d');
   let W, H;
   function resize() {
     W = canvas.width  = canvas.offsetWidth;
@@ -62,6 +61,8 @@
       ctx.translate(cx, cy);
       ctx.rotate(angle);
       const grad = ctx.createLinearGradient(0, 0, 0, length);
+      const pulse = 0.3 + 0.2 * Math.sin(t); // 0.1 to 0.5
+      grad.addColorStop(0, `rgba(255,200,50,${pulse})`);
       grad.addColorStop(0, 'rgba(255,200,50,0.2)');
       grad.addColorStop(0.7, 'rgba(255,200,50,0)');
       ctx.fillStyle = grad;
