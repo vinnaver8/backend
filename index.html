@@ -18,15 +18,23 @@
   </style>
 </head> <body>
  <div class="relative w-[360px] h-[360px] bg-black rounded-2xl overflow-hidden">
-  <canvas id="focusPulse" class="absolute inset-0 w-full h-full pointer-events-none blur-[6px] opacity-70"></canvas>
+  <!-- Animated light-rays canvas -->
+  <canvas id="lightRays" class="absolute inset-0 w-full h-full pointer-events-none blur-[8px] opacity-60"></canvas>
 
+  <!-- Your card content -->
   <div class="relative z-10 p-6 flex flex-col h-full justify-between text-white">
     <div>
-      <h3 class="text-xl font-semibold">AI Focus Light</h3>
-      <p class="mt-2 text-white/80">Beams “grow” one by one to draw attention here.</p>
+      <h3 class="text-xl font-semibold">Keyboard shortcuts.</h3>
+      <p class="mt-2 text-white/80">
+        Work efficiently with instant access to common actions.
+      </p>
     </div>
+    <p class="text-sm text-white/60">
+      Press <kbd class="bg-white/10 px-1 py-0.5 rounded text-white">M</kbd> to highlight this card.
+    </p>
   </div>
 </div>
+
 <script>
   const canvas = document.getElementById('lightRays');
   const ctx = canvas.getContext('2d');
