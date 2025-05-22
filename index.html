@@ -18,62 +18,106 @@
   </style>
 </head> <body>
  <div class="relative w-[360px] h-[360px] bg-black rounded-2xl overflow-hidden">
-  <!-- Animated light-rays canvas -->
-  <canvas id="lightRays" class="absolute inset-0 w-full h-full pointer-events-none blur-[8px] opacity-60"></canvas>
+  <!-- Canvas for advanced light effect -->
+  <canvas
+    id="advancedLight"
+    class="absolute inset-0 w-full h-full pointer-events-none blur-[12px] opacity-75"
+  ></canvas>
 
-  <!-- Your card content -->
+  <!-- Card content -->
   <div class="relative z-10 p-6 flex flex-col h-full justify-between text-white">
     <div>
       <h3 class="text-xl font-semibold">Keyboard shortcuts.</h3>
-      <p class="mt-2 text-white/80">
-        Work efficiently with instant access to common actions.
-      </p>
+      <p class="mt-2 text-white/80">Work efficiently with instant access to common actions.</p>
     </div>
     <p class="text-sm text-white/60">
-      Press <kbd class="bg-white/10 px-1 py-0.5 rounded text-white">M</kbd> to highlight this card.
+      Move your mouse to shift the focus light.
     </p>
   </div>
 </div>
 
 <script>
-  const canvas = document.getElementById('lightRays');
-  const ctx = canvas.getContext('2d');
-  let W, H;
+  const canvas = document.getElementById('advancedLight');
+  const ctx    = canvas.getContext('2d');
+  let W, H, cx, cy;
+  
+  // Track mouse for interactive center
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    cx = e.clientX - rect.left;
+    cy = e.clientY - rect.top;
+  });
+
   function resize() {
     W = canvas.width  = canvas.offsetWidth;
     H = canvas.height = canvas.offsetHeight;
+    // default center if no mouse
+    cx = W / 2;
+    cy = H * 0.1;
   }
   window.addEventListener('resize', resize);
   resize();
 
-  function draw() {
+  function draw(time) {
     ctx.clearRect(0, 0, W, H);
     ctx.globalCompositeOperation = 'lighter';
-    const cx = W / 2;
-    const cy = H * 0.1;
+    const t = time * 0.001;
 
-    const t = performance.now() * 0.0005;
+    // 1) Ambient radial glow
+    const ambient = ctx.createRadialGradient(cx, cy, 0, cx, cy, W * 0.5);
+    ambient.addColorStop(0,   'rgba(255,200,50,0.12)');
+    ambient.addColorStop(1,   'rgba(255,200,50,0)');
+    ctx.fillStyle = ambient;
+    ctx.fillRect(0, 0, W, H);
 
-    for (let i = 0; i < 90; i++) {
-      const angle = (i / 30 - 0.5) * 0.4 + Math.sin(t + i) * 0.02;
-      const length = H * 1.5;
+    // 2) Pulsing core beam
+    const corePhase  = (Math.sin(t * 2) + 1) / 2; // 0→1→0
+    const coreAlpha  = 0.2 + 0.3 * corePhase;    // 0.2→0.5
+    const coreHeight = H * (1.0 + 0.3 * corePhase);
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.fillStyle = `rgba(255,200,50,${coreAlpha})`;
+    ctx.fillRect(-6, 0, 12, coreHeight);
+    ctx.restore();
+
+    // 3) Wide beams layer
+    for (let i = 0; i < 40; i++) {
+      const phase  = t + i * 0.2;
+      const norm   = (Math.sin(phase) + 1) / 2;
+      const length = H * (0.7 + 0.8 * norm);
+      const angle  = (i / 40 - 0.5) * 0.25;
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(angle);
-      const grad = ctx.createLinearGradient(0, 0, 0, length);
-      const pulse = 0.3 + 0.2 * Math.sin(t); // 0.1 to 0.5
-      grad.addColorStop(0, `rgba(255,200,50,${pulse})`);
-      grad.addColorStop(0, 'rgba(255,200,50,0.2)');
-      grad.addColorStop(0.7, 'rgba(255,200,50,0)');
-      ctx.fillStyle = grad;
-      ctx.fillRect(-1, 0, 2, length);
+      const g = ctx.createLinearGradient(0, 0, 0, length);
+      g.addColorStop(0,   `rgba(255,200,50,${0.4 * norm})`);
+      g.addColorStop(0.6, 'rgba(255,200,50,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(-4, 0, 8, length);
+      ctx.restore();
+    }
+
+    // 4) Narrow beams layer
+    for (let i = 0; i < 60; i++) {
+      const phase  = t - i * 0.15;
+      const norm   = (Math.sin(phase) + 1) / 2;
+      const length = H * (0.8 + 0.7 * norm);
+      const angle  = (i / 60 - 0.5) * 0.15;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(angle);
+      const g = ctx.createLinearGradient(0, 0, 0, length);
+      g.addColorStop(0,   `rgba(255,200,50,${0.5 * norm})`);
+      g.addColorStop(0.5, 'rgba(255,200,50,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(-2, 0, 4, length);
       ctx.restore();
     }
 
     requestAnimationFrame(draw);
   }
 
-  draw();
-        </script>
+  requestAnimationFrame(draw);
+</script>
 </body>
 </html>
