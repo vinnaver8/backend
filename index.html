@@ -18,50 +18,28 @@
   </style>
 </head>
 <body>
- <div class="relative overflow-hidden rounded-2xl bg-black p-6 w-[360px] h-[353px]">
-  <!-- 1) Focus light via pseudo-element -->
-  <div class="focus-light"></div>
-
-  <!-- 2) Your normal content -->
-  <div class="relative z-10 flex flex-col h-full justify-between text-white">
-    <div>
-      <h3 class="text-xl font-semibold">Keyboard shortcuts.</h3>
-      <p class="mt-2 text-white/80">
-        Work efficiently with instant access to common actions.
-      </p>
-    </div>
-    <div class="px-6 pb-4 bg-gradient-to-t from-black/80 to-transparent">
-      <p class="text-sm text-white/60">
-        Press <kbd class="bg-white/10 px-1 py-0.5 rounded text-white">M</kbd> to highlight this card.
-      </p>
+ <div
+  class="group relative w-[360px] h-[353px] bg-black rounded-2xl overflow-hidden p-6
+         before:content-[''] before:absolute before:top-[-24px] before:left-1/2
+         before:-translate-x-1/2 before:w-[280px] before:h-[180px]
+         before:bg-[radial-gradient(circle_at_center,rgba(255,180,60,0.8)_0%,rgba(255,180,60,0)_60%)]
+         before:blur-2xl before:opacity-50
+         before:transition before:duration-500
+         group-hover:before:opacity-80 group-hover:before:scale-110"
+>
+  <!-- Command palette UI -->
+  <div class="relative z-10 mb-6">
+    <!-- your palette markup here… -->
+    <div class="bg-gray-800 rounded-lg p-4">
+      <input class="w-full bg-transparent text-white placeholder-gray-400 focus:outline-none" placeholder="Run command…" />
     </div>
   </div>
-</div>
 
-<style>
-  .focus-light {
-    position: absolute;
-    top: -20%;
-    left: 50%;
-    width: 200px;
-    height: 200px;
-    pointer-events: none;
-    transform: translateX(-50%) translateY(0);
-    background: radial-gradient(
-      circle at center,
-      rgba(255,180,60,0.8) 0%,
-      rgba(255,180,60,0.3) 40%,
-      transparent 80%
-    );
-    filter: blur(20px);
-    animation: drift 4s ease-in-out infinite alternate;
-    z-index: 0;
-  }
-
-  @keyframes drift {
-    from { transform: translateX(-50%) translateY(0) scale(0.8); }
-    to   { transform: translateX(-40%) translateY(10px) scale(1); }
-  }
-</style>
+  <!-- Caption -->
+  <div class="relative z-10 mt-auto bg-gradient-to-t from-black/80 to-transparent p-4">
+    <h3 class="text-white text-xl font-semibold">Keyboard shortcuts.</h3>
+    <p class="text-white/70 mt-1">Work efficiently with instant access to common actions.</p>
+  </div>
+ </div>
 </body>
 </html>
