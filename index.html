@@ -1,49 +1,91 @@
 <!DOCTYPE html>
-<html>
-<body>
-  
-<svg id="codeBlock" xmlns="[invalid url, do not cite]" width="600" height="400">
-<defs><clipPath id="clip">
-<rect x="0" y="0" width="600" height="400" rx="10" ry="10"/></clipPath></defs>
-<rect x="0" y="0" width="600" height="400" rx="10" ry="10" fill="#333333"/>
-<g id="codeLines" clip-path="url(#clip)" font-family="monospace" font-size="14"><text x="20" y="30">
-<tspan fill="#569CD6">interface</tspan><tspan fill="#FFFFFF"> Person {</tspan></text><text x="20" y="50">
-<tspan fill="#4EC9B0">  name</tspan><tspan fill="#FFFFFF">: </tspan><tspan fill="#4EC9B0">string</tspan><tspan fill="#FFFFFF">;</tspan></text><text x="20" y="70">
-<tspan fill="#4EC9B0">  age</tspan><tspan fill="#FFFFFF">: </tspan><tspan fill="#4EC9B0">number</tspan><tspan fill="#FFFFFF">;</tspan></text><text x="20" y="90">
-<tspan fill="#4EC9B0">  isActive</tspan><tspan fill="#FFFFFF">: </tspan><tspan fill="#4EC9B0">boolean</tspan><tspan fill="#FFFFFF">;</tspan></text><text x="20" y="110">
-<tspan fill="#FFFFFF">}</tspan></text><text x="20" y="140">
-<tspan fill="#569CD6">const</tspan><tspan fill="#FFFFFF"> users: </tspan><tspan fill="#4EC9B0">Person</tspan><tspan fill="#FFFFFF">[] = [</tspan></text><text x="20" y="160">
-<tspan fill="#FFFFFF">  { name: </tspan><tspan fill="#CE9178">"Alice"</tspan><tspan fill="#FFFFFF">, age: </tspan><tspan fill="#B5CEA8">25</tspan><tspan fill="#FFFFFF">, isActive: </tspan><tspan fill="#569CD6">true</tspan><tspan fill="#FFFFFF"> },</tspan></text><text x="20" y="180">
-<tspan fill="#FFFFFF">  { name: </tspan><tspan fill="#CE9178">"Bob"</tspan><tspan fill="#FFFFFF">, age: </tspan><tspan fill="#B5CEA8">30</tspan><tspan fill="#FFFFFF">, isActive: </tspan><tspan fill="#569CD6">false</tspan><tspan fill="#FFFFFF"> },</tspan></text><text x="20" y="200">
-<tspan fill="#FFFFFF">  { name: </tspan><tspan fill="#CE9178">"Carol"</tspan><tspan fill="#FFFFFF">, age: </tspan><tspan fill="#B5CEA8">27</tspan><tspan fill="#FFFFFF">, isActive: </tspan><tspan fill="#569CD6">true</tspan><tspan fill="#FFFFFF"> }];</tspan></text><text x="20" y="230">
-<tspan fill="#569CD6">function</tspan><tspan fill="#FFFFFF"> greet(user: </tspan><tspan fill="#4EC9B0">Person</tspan><tspan fill="#FFFFFF">): string {</tspan></text><text x="20" y="250">
-<tspan fill="#FFFFFF">  return `Hello, ${</tspan><tspan fill="#4EC9B0">user</tspan><tspan fill="#FFFFFF">.name}!`;</tspan></text><text x="20" y="270">
-<tspan fill="#FFFFFF">}</tspan></text><text x="20" y="300">
-<tspan fill="#569CD6">const</tspan><tspan fill="#FFFFFF"> activeUsers = users.filter(u => u.isActive);</tspan></text><text x="20" y="320">
-<tspan fill="#569CD6">const</tspan><tspan fill="#FFFFFF"> messages = activeUsers.map(greet);</tspan></text><text x="20" y="350">
-<tspan fill="#FFFFFF">messages.forEach((msg, idx) => {</tspan></text><text x="20" y="370">
-<tspan fill="#FFFFFF">  console.log(`${idx + 1}. ${msg}`);</tspan></text><text x="20" y="390">
-<tspan fill="#FFFFFF">});</tspan></text></g>
-<g id="copyBtn" transform="translate(440,16)" style="cursor:pointer;" onclick="copyCode()">
-<text x="0" y="12" font-family="sans-serif" font-size="14" fill="#CCCCCC">  Copy code</text>
-<g transform="translate(80, -4)"><rect x="4" y="4" width="24" height="32" rx="3" fill="none" stroke="#CCCCCC" stroke-width="2"/>
-<rect x="0" y="0" width="24" height="32" rx="3" fill="none" stroke="#CCCCCC" stroke-width="2"/>
-<line x1="6" y1="8" x2="18" y2="8" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"/>
-<line x1="6" y1="14" x2="18" y2="14" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"/>
-<line x1="6" y1="20" x2="18" y2="20" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"/></g></g>
-</svg>
-
-  <script>
-    function copyCode() {
-      const svg = document.getElementById('codeBlock');
-      let codeText = '';
-      svg.querySelectorAll('#codeLines text').forEach(el => {
-        codeText += el.textContent + '\n';
-      });
-      navigator.clipboard.writeText(codeText)
-        .then(() => console.log('Code copied!'))
-        .catch(err => console.error('Copy failed:', err));
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Focus Light Test</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Ensure body is centered for demo */
+    body {
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
     }
+  </style>
+</head>
+<body>
+
+  <!-- Card wrapper -->
+  <div class="relative overflow-hidden rounded-2xl bg-black p-6 w-[360px] h-[353px]">
+    <!-- Canvas-based focus light (Huly style) -->
+    <div
+      class="absolute left-1/2 top-0 -translate-x-1/2 -z-10 w-full aspect-[1.01904] sm:-top-12 xs:-top-8 overflow-hidden pointer-events-none"
+      aria-hidden="true"
+    >
+      <canvas id="focus-canvas" class="w-full h-full"></canvas>
+    </div>
+
+    <!-- Card Content -->
+    <div class="relative z-10 text-white flex flex-col h-full">
+      <div class="flex-1">
+        <h3 class="text-xl font-semibold">Keyboard shortcuts.</h3>
+        <p class="mt-2 text-gray-300">
+          Work efficiently with instant access to common actions.
+        </p>
+      </div>
+      <div class="px-6 pb-4 bg-gradient-to-t from-black/80 to-transparent">
+        <p class="text-white text-sm">
+          Press <kbd class="bg-gray-700 text-gray-300 rounded px-1">M</kbd> to highlight this card.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Canvas script driving the sharp-edged focus light -->
+  <script>
+    (function(){
+      const canvas = document.getElementById('focus-canvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, t = 0;
+
+      function resize(){
+        const parent = canvas.parentElement;
+        W = canvas.width  = parent.offsetWidth;
+        H = canvas.height = parent.offsetHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      function draw(){
+        t += 0.008;
+        ctx.clearRect(0, 0, W, H);
+
+        // Centered at top 25%, with slight drift
+        const cx = W / 2;
+        const cy = H * 0.25 + Math.sin(t * 1.5) * 10;
+
+        // Inner/outer radii
+        const r0 = W * 0.05;
+        const r1 = W * 0.5;
+
+        // Radial gradient: sharp fall-off
+        const grad = ctx.createRadialGradient(cx, cy, r0, cx, cy, r1);
+        grad.addColorStop(0.0, 'rgba(255,220,100,0.5)');
+        grad.addColorStop(0.3, 'rgba(255,200,50,0.2)');
+        grad.addColorStop(1.0, 'rgba(255,200,50,0)');
+
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, W, H);
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
   </script>
+
 </body>
 </html>
